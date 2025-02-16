@@ -1,0 +1,52 @@
+.ras-hp-car-information-item {
+  margin: 20px 0;
+}
+
+@media (min-width: 1024px) {
+  .ras-hp-car-information-item {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+  }
+  .ras-hp-car-information-item:nth-child(odd) {
+    flex-direction: row-reverse;
+  }  
+  .ras-hp-car-information-item:nth-child(even) {
+    flex-direction: row;
+  }
+}
+
+.post-template-full-width .full-width-main-content {
+  padding: 10px
+}
+  .ras-hp-car-information-item .image {
+    width: 100%;
+  }
+.ras-hp-car-information-item img {
+  max-width: 480px;
+  width: 100%;
+  margin: auto;
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .ras-hp-car-information-item .image {
+    width: 45%;
+  }
+}
+
+.ras-hp-car-information-item .title {
+  font-weight:bold;
+  font-size: 24px;
+  font-family: 'Roboto Condensed'
+}
+
+.ras-hp-car-information-item .content {
+  margin: 20px 0;
+}
+
+@media (min-width: 1024px) {
+  .ras-hp-car-information-item .content {
+    width: 52%;
+  }
+}

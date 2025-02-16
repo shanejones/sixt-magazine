@@ -1,0 +1,40 @@
+.ras-hp-flourish-table {
+  padding: 20px 0 40px;
+}
+
+.ras-hp-flourish-table-toggle-table, 
+.ras-hp-flourish-table-toggle-table:hover,
+.ras-hp-flourish-table-toggle-table:focus {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  outline: none !important;
+}
+
+.ras-hp-flourish-table-toggle-table {
+    transform: translateY(5px);
+}
+
+.ras-hp-flourish-table-toggle-table span {
+    border: 4px solid black;
+    width: 20px;
+    height: 20px;
+    border-top: none;
+    border-left: none;
+    transform: rotate(225deg);
+    display: block;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.ras-hp-flourish-table-toggle-table span.visible {
+  margin-top: -30px;
+  transform: rotate(45deg);
+}
+
+.ras-hp-flourish-table-toggle-table {
+  margin-top: 2px;
+}
+
+.ras-hp-flourish-table-hide {
+  display: none;
+}

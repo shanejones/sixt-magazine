@@ -1,0 +1,41 @@
+.ras-hp-k9-header {
+  height: 500px;
+  padding: 10px 0;
+  background-position: center center;
+  background-size: cover;
+}
+
+.ras-hp-k9-text-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 35px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}
+
+.ras-hp-k9-header img {
+  height: 60px;
+  margin: 0 20px;
+  width: auto;
+  display: block;
+}
+
+.ras-hp-k9-header span {
+  display: block;
+  padding: 0 5px
+}
+
+.ras-hp-k9-header-title {
+  background-color: #FE5F00;
+  padding: 20px 0
+}
+
+.ras-hp-k9-header-title h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold !important;
+  margin-bottom: 0 !important;
+}

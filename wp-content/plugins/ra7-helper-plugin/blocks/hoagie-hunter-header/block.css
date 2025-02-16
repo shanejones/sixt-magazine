@@ -1,0 +1,171 @@
+.ras-hp-hh-header {
+  width: 100%;
+  color: white;
+  position: relative;
+  background-color: black;
+}
+
+.ras-hp-hh-header-background {
+  position: relative;
+  height: 85vw;
+  width: 100%;
+  background-position: right bottom;
+  background-size: 156%;
+  z-index: 0;
+  background-repeat: no-repeat;
+}
+
+.ras-hp-hh-header-logo-wrap {
+  padding: 20px 35px;
+  position: relative;
+  z-index: 100;
+}
+
+.ras-hp-hh-header-share {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 20px;
+  right: 35px;
+}
+
+
+
+.ras-hp-hh-offset-border {
+  position: relative;
+  padding: 10px;
+  display: inline-block;
+  font-family: 'Helvetica Now Condensed', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 20px;
+  width: 150px;
+  text-align: center;
+}
+
+.ras-hp-hh-offset-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  border: 3px solid white;
+}
+
+.ras-hp-hh-offset-border::before {
+  left: 0px;
+  transform: skew(-10deg);
+}
+
+.ras-hp-hh-offset-border::after {
+  right: 3px;
+  transform: skew(5deg);
+}
+
+.ras-hp-hh-header-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  padding: 0 35px;
+  ;
+}
+
+.ras-hp-hh-header-content h1 {
+  font-size: 45px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  margin: 15px 0 !important;
+  color: white !important;
+  font-family: 'Helvetica Now Condensed', serif;
+  font-weight: 700 !important;
+}
+
+.ras-hp-hh-header-content p a {
+  text-decoration: underline;
+}
+
+.ras-hp-hh-content span {
+  font-size: 20px;
+}
+
+.ras-hp-hh-marquee {
+  width: 100%;
+  background-color: #FF5000;
+  color: black;
+  text-transform: uppercase;
+  overflow: hidden;
+  font-family: 'Helvetica Now Condensed', serif;
+  font-weight: 700;
+  padding: 25px 0;
+  font-size: 30px;
+  margin-bottom: 50px
+}
+
+.ras-hp-hh-marquee span {
+  display: inline-block;
+  margin: 0 35px;
+}
+
+@media (min-width: 1024px) {
+  .ras-hp-hh-header {
+    height: 85vh;
+    overflow: hidden;
+  }
+
+  .ras-hp-hh-offset-border {
+    font-size: 36px;
+    width: 240px;
+    padding: 20px 20px
+  }
+
+  .ras-hp-hh-header-content h1 {
+    font-size: 75px !important;
+  }
+
+  .ras-hp-hh-header-background {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-position: bottom right;
+    background-size: contain;
+    height: 100%;
+  }
+
+  .ras-hp-hh-header-logo-wrap {
+    padding: 20px 35px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+  }
+
+  .ras-hp-hh-header-content {
+    max-width: 1460px;
+    margin: 0 auto;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ras-hp-hh-header-content-inner {
+    width: 60%;
+  }
+
+}
+
+@media (min-width: 1440px) {
+  .ras-hp-hh-header-background {
+    background-size: cover;
+  }
+
+  .ras-hp-hh-header-content h1 {
+    font-size: 90px !important;
+  }
+
+  .ras-hp-hh-header-content-inner {
+    width: 46%;
+    font-size: 17px;
+  }
+}

@@ -1,0 +1,18 @@
+.ras-hp-footer-links {
+  padding: 30px 0;
+  max-width: 1080px;
+  margin: auto;
+}
+.ras-hp-footer-links ul {
+  margin-left: 0px !important;
+  margin-bottom: 0px !important;
+}
+.ras-hp-footer-links .lSSlideOuter .lSPager.lSpg>li.active a, 
+.ras-hp-footer-links .lSSlideOuter .lSPager.lSpg>li:hover a {
+  background-color: #ff5f00 !important;
+}
+
+.ras-hp-footer-links .lSPager.lSpg {
+  padding-top: 0px !important;
+  margin-bottom: 10px;
+}

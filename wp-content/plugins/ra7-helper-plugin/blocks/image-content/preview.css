@@ -1,0 +1,9 @@
+.ras-hp-image-content-wrap {
+  display: flex;
+  gap: 20px
+}
+
+.ras-hp-image-content-item {
+  width: 50%;
+  flex-shrink: 0;
+}

@@ -1,1 +1,48 @@
 ../shared/certs/ 
+# WordPress core files
+wp-admin/
+wp-includes/
+wp-content/*
+!wp-content/plugins/
+wp-content/plugins/*
+!wp-content/plugins/ra7-helper-plugin/
+!wp-content/plugins/ra7-wonders-of-the-us/
+*.php
+!wp-config-docker.php
+!docker-compose.yml
+!Dockerfile
+
+# WordPress generated files
+.htaccess
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/cache/
+wp-content/backups/
+wp-content/uploads/
+
+# WordPress debug logs
+debug.log
+
+# WordPress configuration files
+wp-config.php
+wp-config-sample.php
+
+# WordPress dependency directories
+vendor/
+node_modules/
+
+# WordPress environment files
+.env
+.env.*
+!.env.example
+
+# WordPress system files
+*.log
+.DS_Store
+Thumbs.db
+
+
+license.txt
+wp-cli.phar.1
+wp-cli.phar.2
+wp-cli.phar.3
