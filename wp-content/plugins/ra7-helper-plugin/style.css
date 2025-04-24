@@ -96,5 +96,67 @@ figure.ras-hp-image-full-width {
     text-align: center;
     font-size: 17px;
   }
+}
+
+
+
+
+.ras-qc-content-black {
+  background-color: black;
+  color: white;
+}
+
+.ras-qc-content-black h2 {
+  color: white;
+}
+
+.ras-qc-content-white {
+  background-color: white;
+  color: black;
+}
+.ras-qc-content-orange {
+  background-color: #FF5000;
+  color: white;
+}
+
+.ras-qc-content-orange h2,
+.ras-qc-content-orange h3 {
+  color: white;
+}
+
+
+.ras-qc-content-black .wp-block-group__inner-container,
+.ras-qc-content-white .wp-block-group__inner-container,
+.ras-qc-content-orange .wp-block-group__inner-container {
+  padding: 50px 20px;
+  max-width: 940px;
+  margin: auto;
+}
+
+.ras-qc-content-black h2,
+.ras-qc-content-white h2,
+.ras-qc-content-orange h2 {
+  font-size: 35px !important;
+}
+
+
+@media (min-width: 1024px) {
+  .ras-qc-content-black .wp-block-group__inner-container,
+  .ras-qc-content-white .wp-block-group__inner-container,
+  .ras-qc-content-orange .wp-block-group__inner-container {
+    padding: 60px 40px;
+   }
+
+
+  .ras-qc-content-black h2,
+  .ras-qc-content-white h2,
+  .ras-qc-content-orange h2 {
+    font-size: 58px !important;
+  }
+  
+  .ras-qc-content-black p,
+  .ras-qc-content-white p {
+    padding: 0 40px;
+  }
 
 }
