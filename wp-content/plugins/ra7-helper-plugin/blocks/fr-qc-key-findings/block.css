@@ -14,6 +14,12 @@
   text-align: center;
 }
 
+@media (min-width: 1200px) {
+  h2.fr-qc-key-findings-title {
+    font-size: 30px !important;
+  }
+}
+
 #fr-qc-key-findings-slider {
   margin-bottom: 60px;
 }
@@ -32,7 +38,7 @@
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -41,9 +47,9 @@
 .key-finding-item h3 {
   margin-top: 0;
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
-  padding: 10px 5px;
+  padding: 20px 5px;
   margin-bottom: 0;
   box-sizing: border-box;
 }
@@ -79,7 +85,7 @@
   .key-finding-item {
     flex: 0 0 calc(20% - 10px);
     max-width: calc(20% - 10px);
-    margin: 0 5px 10px 5px;
+    margin: 0 5px 10px 5px !important;
     opacity: 1;
     transform: none;
   }
@@ -87,6 +93,7 @@
   #fr-qc-key-findings-slider .lslide {
     opacity: 1;
     transform: none;
+    width: auto !important;
   }
 }
 
@@ -195,4 +202,16 @@
   font-weight: bold;
   font-size: 18px;
    background-image: none;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .fr-qc-key-findings-slider-wrapper {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .fr-qc-key-findings-slider-wrapper {
+    width: 100%;
+  }
 }

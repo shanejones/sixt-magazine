@@ -1,0 +1,146 @@
+.fr-qc-interactive-map-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.fr-qc-interactive-map-image {
+    order: 1;
+    flex: 1 1 auto;
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+}
+
+.fr-qc-interactive-map-image .main-map {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.fr-qc-map-marker {
+    position: absolute;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    border: none !important;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.fr-qc-map-marker.active {
+    background-color: black;
+    color: #fff;
+}
+
+.fr-qc-marker-icon {
+    display: none;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FF5000;
+}
+
+.fr-qc-map-marker.active .fr-qc-marker-icon {
+    display: block;
+}
+
+.fr-qc-interactive-map-content {
+    order: 2;
+    flex: 1 1 auto;
+}
+
+.fr-qc-interactive-map-content h2 {
+    font-size: 30px;
+}
+.fr-qc-interactive-map-content a {
+    color: #FF5000;
+    text-decoration: underline;
+}
+
+
+.fr-qc-map-location-item-number {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.fr-qc-map-location-item h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.fr-qc-map-location-item {
+    display: none;
+}
+
+.fr-qc-map-location-item.active {
+    display: block;
+}
+
+.fr-qc-map-location-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+
+@media (min-width: 768px) {
+    .fr-qc-interactive-map-container {
+        flex-direction: row; 
+        align-items: flex-start; 
+    }
+
+    .fr-qc-interactive-map-content {
+        order: 1;
+        flex: 1 1 40%;
+        margin-right: 20px;
+    }
+
+    .fr-qc-interactive-map-image {
+        order: 2;
+        flex: 1 1 60%;
+        max-width: 60%;
+    }
+
+    .fr-qc-interactive-map-image .main-map {
+        max-width: 100%;
+    }
+
+    .fr-qc-map-marker {
+        width: 30px;
+        height: 30px;
+    }
+
+    .fr-qc-marker-icon {
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        width: 30px;
+    }
+    .fr-qc-interactive-map-content h2 {
+        font-size: 35px;
+    }
+}
