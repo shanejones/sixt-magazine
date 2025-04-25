@@ -1,0 +1,227 @@
+.fr-qc-worldwide-slider-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 0 ;
+}
+
+#fr-qc-worldwide-slider {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.fr-qc-worldwide-slider-title {
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  h2.fr-qc-worldwide-slider-title {
+    font-size: 30px !important;
+  }
+}
+
+#fr-qc-worldwide-slider {
+  margin-bottom: 60px;
+}
+
+.fr-qc-worldwide-slider-slider-wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Add some basic styling to the items */
+.fr-qc-worldwide-slider-item {
+  background-color: transparent;
+  color: white;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.fr-qc-worldwide-slider-item img {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+li.fr-qc-worldwide-slider-item:not(.active) img {
+  transform: scale(0.9);
+  opacity: 0.5;
+}
+
+.fr-qc-worldwide-slider.slider-active .lSSlideOuter {
+  position: relative;
+  overflow: visible;
+}
+
+.fr-qc-worldwide-slider.slider-active .lSSlideWrapper {
+  overflow: visible;
+}
+
+.fr-qc-worldwide-slider.slider-active #fr-qc-worldwide-slider .lslide {
+  opacity: 1;
+}
+
+.fr-qc-worldwide-slider.slider-active #fr-qc-worldwide-slider .lslide.active {
+  opacity: 1;
+}
+
+.fr-qc-worldwide-slider.slider-active .lSPager {
+  position: absolute;
+  bottom: -50px;
+  left: 10px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.fr-qc-worldwide-slider.slider-active .lSAction {
+  position: absolute;
+  bottom: -50px;
+  right: -10px;
+  top: auto;
+  width: auto;
+  display: flex !important;
+  gap: 5px;
+}
+
+/* Reset individual button positioning if needed */
+.fr-qc-worldwide-slider.slider-active .lSAction > a {
+  position: static;
+  margin-top: 0;
+  background-color: black;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background-image: none;
+}
+.lSSlideOuter .lSPager.lSpg>li a {
+  background-color: black;
+}
+
+
+/* Adjust pager/control appearance if needed */
+.fr-qc-worldwide-slider .lSSlideOuter .lSPager.lSpg>li {
+  padding: 0 3px;
+}
+
+.fr-qc-worldwide-slider .lSAction > a {
+    background-color: rgba(255, 255, 255, 0.7);
+     background-image: none;
+}
+
+.lSSlideOuter .lSPager.lSpg>li.active a, .lSSlideOuter .lSPager.lSpg>li:hover a {
+  background-color: #ffffff !important;
+}
+
+
+/* Style the text arrows inside the round buttons */
+.fr-qc-worldwide-slider.slider-active .lSAction > .lSPrev:before,
+.fr-qc-worldwide-slider.slider-active .lSAction > .lSNext:before {
+ content: ">";
+ color: #ffffff !important;
+  background-repeat: no-repeat;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.fr-qc-worldwide-slider.slider-active .lSAction > .lSPrev:before {
+   
+  background-position: 0 0;
+  content: "<";
+  display: block;
+  text-align: center;
+  line-height: 32px;
+  font-weight: bold;
+  font-size: 18px;
+  background-image: none;
+}
+
+.fr-qc-worldwide-slider.slider-active .lSAction > .lSNext:before {
+  
+  background-position: -32px 0;
+  content: ">";
+  display: block;
+  text-align: center;
+  line-height: 32px;
+  font-weight: bold;
+  font-size: 18px;
+   background-image: none;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .fr-qc-worldwide-slider-slider-wrapper {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fr-qc-worldwide-slider-slider-wrapper {
+    width: 65%;
+  }
+  li.fr-qc-worldwide-slider-item:not(.active) img {
+    transform: scale(0.8);
+  }
+}
+
+/* Content Styling */
+.fr-qc-worldwide-slider-content-wrapper {
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  max-width: 800px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slider-content-number {
+  font-size: 25px !important;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;  
+}
+
+#slider-content-title {
+  margin-bottom: 15px;
+  font-size: 30px !important;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;  
+}
+
+#slider-content-description p {
+  margin-bottom: 1em;
+  line-height: 1.6;
+  text-align: left;
+}
+
+
+
+
+
+
+#slider-content-description p a {
+  color: #ff5000;
+  text-decoration: underline;
+  
+}
+
+
+@media (min-width: 1024px) {
+  .slider-content-number {   
+    text-align: center;
+  }
+  #slider-content-title {
+    font-size: 35px !important;
+    text-align: center;
+  }
+  #slider-content-description p {
+    text-align: center;
+  }
+}
+
