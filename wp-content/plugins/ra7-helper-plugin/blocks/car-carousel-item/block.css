@@ -1,0 +1,79 @@
+.ras-hp-car-carousel-item {
+  list-style-type: none !important;
+}
+
+.ras-hp-car-carousel-item a {
+  box-shadow: 4px 4px 15px -6px rgba(0,0,0,0.5);
+  flex-direction: column;
+  margin: 0 8px;
+  position: relative;
+  display: block;
+}
+
+.ras-hp-car-carousel-item .ras-hp-car-carousel-item-image {
+  width: 100%;
+  display: block;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+} 
+
+.ras-hp-car-carousel-item .ras-hp-car-carousel-item-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ras-hp-car-carousel-item-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.ras-hp-car-carousel-item-content p {
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px !important;
+}
+
+.ras-hp-car-carousel-item-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+}
+
+.ras-hp-car-carousel-item-footer p {
+  color: white;
+  font-size: 12px;
+  border: 1px solid white;
+  border-radius: 30px;
+  padding: 0px 10px;
+  display: inline-block;
+  margin: 0 0 6px 7px;
+}
+
+
+/* Desktop styles */
+@media (min-width: 800px) {
+
+  .ras-hp-car-carousel-item .ras-hp-car-carousel-item-image {
+    overflow: hidden; /* Needed for object-fit */
+  }
+
+  /* Make image fill the container */
+  .ras-hp-car-carousel-item .ras-hp-car-carousel-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}

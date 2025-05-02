@@ -1,0 +1,19 @@
+.ras-hp-footer-link-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-left: 4px solid #333;
+}
+
+.ras-hp-footer-link-item .image {
+  width: 30%;
+  padding-left: 10px;
+
+}
+.ras-hp-footer-link-item .content {
+  width: 70%;
+}
+
+.ras-hp-footer-link-item .content p {
+  margin-bottom: 0
+}

@@ -1,0 +1,47 @@
+.ras-hp-car-carousel-wrapper {
+  background-color: #262627;
+}
+.ras-hp-car-carousel-wrapper h2 {
+  color: white;
+  text-align: center;
+  max-width: 860px;
+  margin: auto;
+  padding: 20px 10px 10px 10px;
+  font-size: 30px;
+}
+@media (min-width: 1024px) {
+  .ras-hp-car-carousel-wrapper h2 {
+  font-size: 35px;
+  }
+}
+.ras-hp-car-carousel-description {
+  color: white;
+  text-align: center;
+  max-width: 860px;
+  margin: auto;
+  padding: 0 10px 30px 10px;
+  font-size: 1.6rem;
+}
+.ras-hp-car-carousel {
+  padding: 70px 0;
+  max-width: 1024px;
+  margin: auto;
+}
+.ras-hp-car-carousel-slider {
+  margin-left: 0px !important;
+  margin-bottom: 0px !important;
+}
+.ras-hp-car-carousel-slider .lSSlideOuter .lSPager.lSpg>li.active a, 
+.ras-hp-car-carousel-slider .lSSlideOuter .lSPager.lSpg>li:hover a {
+  background-color: #ff5f00 !important;
+}
+
+.ras-hp-car-carousel-slider .lSPager.lSpg {
+  padding-top: 0px !important;
+  margin-bottom: 10px;
+}
+
+.ras-hp-car-carousel .lSSlideOuter .lSPager.lSpg {
+  text-align: left !important;
+  padding-top: 20px
+}
