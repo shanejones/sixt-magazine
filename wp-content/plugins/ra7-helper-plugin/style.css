@@ -133,6 +133,11 @@ figure.ras-hp-image-full-width {
   margin: auto;
 }
 
+.ras-qc-content-black.ras-qc-content-black-wider .wp-block-group__inner-container {
+  max-width: 1440px;
+  padding: 5px;
+}
+
 .ras-qc-content-black h2,
 .ras-qc-content-white h2,
 .ras-qc-content-orange h2 {
