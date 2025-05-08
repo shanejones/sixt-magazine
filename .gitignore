@@ -7,7 +7,6 @@ wp-content/*
 wp-content/plugins/*
 !wp-content/plugins/ra7-helper-plugin/
 !wp-content/plugins/ra7-wonders-of-the-us/
-*.php
 !wp-config-docker.php
 !docker-compose.yml
 !Dockerfile
@@ -46,3 +45,16 @@ license.txt
 wp-cli.phar.1
 wp-cli.phar.2
 wp-cli.phar.3
+index.php
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
