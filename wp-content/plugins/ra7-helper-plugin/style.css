@@ -12,6 +12,14 @@
   font-style: normal;
 }
 
+.post-template-full-width .breadcrumb {
+  display: none;
+}
+
+.wp-block-heading-with-highlight span {
+  color: #FF5000;
+}
+
 figure.ras-hp-image-full-width {
   margin: 1em 0;
 }

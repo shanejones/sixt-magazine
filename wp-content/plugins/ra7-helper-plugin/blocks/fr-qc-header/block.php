@@ -13,6 +13,7 @@ $background_image_mobile = wp_get_attachment_image_url($background_image_mobile_
 <div class="fr-qc-header">
   <div class="fr-qc-header-content-wrapper">
     <div class="fr-qc-header-content gravity-container">
+      <img src="<?php echo plugins_url('images/sixt-logo-black.png', dirname(dirname(__FILE__))); ?>" alt="Sixt Logo" class="fr-qc-header-sixt-logo">
       <p><svg id="Group_867" data-name="Group 867" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="83.24" height="99.65" viewBox="0 0 83.24 99.65">
   <defs>
     <clipPath id="clip-path">
