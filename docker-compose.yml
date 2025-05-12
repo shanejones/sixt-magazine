@@ -34,6 +34,7 @@ services:
         }
     volumes:
       - ./:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/uploads.ini
     # Install WP-CLI in the container
     entrypoint: >
       /bin/sh -c '
