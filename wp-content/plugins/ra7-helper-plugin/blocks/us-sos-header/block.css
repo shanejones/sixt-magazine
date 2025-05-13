@@ -1,0 +1,269 @@
+/* Base styles */
+.us-sos-header {
+  position: relative;
+  width: 100%;
+  min-height: 800px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.us-sos-header-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.us-sos-header-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.us-sos-header-video-container .desktop-video {
+  display: none;
+}
+
+.us-sos-header-video-container .mobile-video {
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 9/16;
+  width: 100%;
+  height: 100%;
+}
+
+.us-sos-header-content-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+}
+
+.us-sos-header-content-wrapper-inner {
+  border: 10px solid white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.us-sos-header-content {
+  width: 100%;
+  max-width: 600px;
+  padding: 15px 15px 25px 15px;
+  background: white;
+  height: 45%;
+  min-height: 315px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.us-sos-header h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-family: 'Roboto Condensed', sans-serif;
+  line-height: 1;
+}
+
+.us-sos-header p {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #767676;
+  max-width: 250px;
+}
+
+.us-sos-header-link {
+  display: inline-block;
+  background-color: #FF5F00;
+  color: white;
+  padding: 10px 24px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+  border-radius: 30px;
+  margin-top: 20px;
+  align-self: flex-start;
+}
+
+.us-sos-header-link:hover {
+  background-color: #E55400;
+  color: white;
+}
+
+/* Mobile specific styles */
+@media (max-width: 640px) {
+  .us-sos-header {
+    min-height: 500px;
+    padding-bottom: 177.78%;
+  }
+  
+  .us-sos-header-video-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .us-sos-header-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+}
+
+/* Small mobile and up */
+@media (min-width: 480px) {
+  .us-sos-header-content {
+    height: 50%;
+  }
+}
+
+@media (min-width: 480px) {
+  .us-sos-header-content {
+    height: 45%;
+  }
+}
+
+/* Mobile typography */
+@media (min-width: 480px) {
+  .us-sos-header h1 {
+    font-size: 53px;
+  }
+}
+
+@media (min-width: 540px) {
+  .us-sos-header h1 {
+    font-size: 64px;
+    max-width: 300px;
+  }
+}
+
+/* Tablet and up */
+@media (min-width: 641px) {
+  .us-sos-header-video-container .desktop-video {
+    display: block;
+  }
+  
+  .us-sos-header-video-container .mobile-video {
+    display: none;
+  }
+
+  .us-sos-header-content-wrapper-inner {
+    border: 15px solid white;
+  }
+  
+  .us-sos-header {
+    min-height: 600px;
+    flex-direction: row;
+  }
+
+  .us-sos-header-content {
+    height: 100%;
+    max-width: 50%;
+  }
+  
+  .us-sos-header-content-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 40px;
+  }
+
+  .us-sos-header h1 {
+    font-size: 52px;
+    max-width: none;
+  }
+}
+
+/* Medium screens */
+@media (min-width: 800px) {
+  .us-sos-header h1 {
+    font-size: 67px;
+    max-width: none;
+  }
+
+  .us-sos-header p {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 960px) {
+  .us-sos-header h1 {
+    font-size: 80px;
+    max-width: none;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .us-sos-header-content-wrapper-inner {
+    border: 20px solid white;
+  }
+}
+
+@media (min-width: 1200px) {
+  .us-sos-header {
+    min-height: 1080px;
+    max-height: 1080px;
+  }
+  
+  .us-sos-header-video-container video {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  .us-sos-header h1 {
+    font-size: 100px;
+    max-width: none;
+  }
+}
+
+@media (min-width: 1300px) {
+  .us-sos-header h1 {
+    font-size: 115px;
+    max-width: none;
+  }
+}
+
+@media (min-width: 1400px) {
+  .us-sos-header h1 {
+    font-size: 130px;
+    max-width: none;
+  }
+}
+
+@media (min-width: 1500px) {
+  .us-sos-header h1 {
+    font-size: 140px;
+    max-width: none;
+  }
+}
+
+/* Video aspect ratio maintenance */
+@media (max-width: 1920px) and (min-width: 641px) {
+  .us-sos-header {
+    height: 0;
+    padding-bottom: 56.25%;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 641px) {
+  .us-sos-header {
+    padding-bottom: 56.25%;
+    min-height: 500px;
+  }
+}
