@@ -1,0 +1,151 @@
+.ras-sos-slide-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem;
+  color: white;
+  position: relative;
+  z-index: 5;
+}
+
+.ras-sos-text {
+  width: 100%;
+  text-align: left;
+  padding-top: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.ras-sos-text p {
+  font-size: 19px;
+  color: white;
+  margin: 0 0 1rem;
+}
+
+.ras-sos-text h2 {
+  font-size: 30px;
+  color: white;
+  margin: 0 0 1rem;
+}
+
+.ras-sos-text .ras-sos-state {
+  font-size: 17px;
+  color: white;
+}
+
+.ras-sos-thumbnail {
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+  transform: translateX(0);
+  position: relative;
+  aspect-ratio: 1/1;
+}
+
+.ras-sos-thumbnail-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  justify-content: center;
+  height: 100%;
+}
+
+.ras-sos-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0px 0px 10px 0px rgb(255 255 255 / 50);
+  border: 1px solid rgba(255,255,255,0.75);
+}
+
+.ras-sos-prev {
+  transform: translateX(4rem);
+}
+
+.ras-sos-next {
+  transform: translateX(-4rem);
+}
+
+.ras-sos-prev,
+.ras-sos-next {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.ras-sos-prev svg,
+.ras-sos-next svg {
+  display: block;
+}
+
+.ras-sos-prev:hover,
+.ras-sos-next:hover {
+  border: none;
+  background: none !important;
+}
+
+@media (min-width: 801px) {
+  .ras-sos-slide-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ras-sos-text {
+    flex: 0 1 50%;
+    padding-top: 0;
+  }
+
+  .ras-sos-thumbnail {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    transform: translateX(-140px);
+    aspect-ratio: auto;
+  }
+
+  .ras-sos-thumbnail-nav {
+    justify-content: flex-start;
+  }
+
+  .ras-sos-thumbnail img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .ras-sos-text p {
+    font-size: 40px;
+  }
+
+  .ras-sos-text h2 {
+    font-size: 60px;
+  }
+
+  .ras-sos-text .ras-sos-state {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1201px) {
+  .ras-sos-thumbnail {
+    transform: translateX(-250px);
+  }
+
+  .ras-sos-thumbnail img {
+    width: 440px;
+    height: 440px;
+  }
+}
+
+.ras-sos-slide-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(30deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 23%);
+  z-index: 2;
+}
