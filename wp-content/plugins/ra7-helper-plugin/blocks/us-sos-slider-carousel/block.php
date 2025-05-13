@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const thumbnailImg = slide.querySelector('.thumbnail').cloneNode(true);
         thumb.appendChild(thumbnailImg);
         thumbnails.appendChild(thumb);
+
+        // Set initial slide numbers
+        slide.querySelector('.ras-sos-slide-number').textContent = `#${index + 1}`;
     });
 
     function updateThumbnails() {
@@ -39,10 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateThumbnails();
     }
 
-    function goToNextSlide() {
-        goToSlide((currentSlide + 1) % slides.length);
-    }
-
     // Add click handlers for all prev/next buttons
     document.querySelectorAll('.ras-sos-prev').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -54,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.ras-sos-next').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            goToNextSlide();
+            goToSlide((currentSlide + 1) % slides.length);
         });
     });
 
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleNextThumbClick(e) {
         if (e.target.closest('.ras-sos-thumb.next')) {
             e.preventDefault();
-            goToNextSlide();
+            goToSlide((currentSlide + 1) % slides.length);
         }
     }
 
