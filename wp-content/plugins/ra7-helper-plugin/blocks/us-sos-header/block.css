@@ -1,4 +1,10 @@
-/* Base styles */
+.us-sos-logo-block {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
 .us-sos-header {
   position: relative;
   width: 100%;

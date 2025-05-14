@@ -10,6 +10,9 @@ $background_video_mobile_url = wp_get_attachment_url($background_video_mobile);
 $background_video_url = wp_get_attachment_url($background_video);
 
 ?>
+<div class="us-sos-logo-block">
+  <img src="<?php echo plugin_dir_url(dirname(dirname(__FILE__))) . 'images/sixt-logo-black.png'; ?>" alt="Sixt Logo">
+</div>
 <div class="us-sos-header">
   <div class="us-sos-header-video-container">
     <?php if ($background_video_mobile): ?>

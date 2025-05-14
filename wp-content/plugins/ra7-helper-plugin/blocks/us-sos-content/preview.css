@@ -1,0 +1,13 @@
+.ras-sos-content {
+  display: flex;
+  align-items: center;
+}
+
+.ras-sos-content-container {
+  width: 70%;
+  text-align: left;
+}
+
+.ras-sos-content-image {
+  width: 30%;
+}

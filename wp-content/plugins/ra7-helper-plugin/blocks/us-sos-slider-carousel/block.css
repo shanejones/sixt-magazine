@@ -4,6 +4,8 @@
     height: 50vh;
     min-height: 640px;
     overflow: hidden;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 @media (min-width: 481px) {
