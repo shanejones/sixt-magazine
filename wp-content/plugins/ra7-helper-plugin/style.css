@@ -174,3 +174,34 @@ figure.ras-hp-image-full-width {
   }
 
 }
+
+
+.ras-sos-content-container {
+  text-align: left;
+  padding: 20px;
+  max-width: 810px;
+  margin: auto;
+}
+
+@media (min-width: 1024px) {
+  .ras-sos-content-container {
+    padding: 50px 40px;
+    text-align: center;
+  }
+}
+
+
+.ras-sos-background-texture {
+  background: url(/wp-content/plugins/ra7-helper-plugin/images/sos-background-texture.jpg) no-repeat center center;
+  background-repeat: repeat;
+}
+
+.ras-sos-content-container h2 {  
+  font-size: 30px !important;
+}
+
+@media (min-width: 1024px) {
+  .ras-sos-content-container h2 {
+    font-size: 60px !important;
+  }
+}
