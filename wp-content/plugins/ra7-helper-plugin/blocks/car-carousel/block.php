@@ -6,14 +6,24 @@ if (!wp_style_is('lightslider-css', 'enqueued')) {
 if (!wp_script_is('lightslider-js', 'enqueued')) {
     wp_enqueue_script('lightslider-js', plugins_url('../../scripts/lightslider/lightslider.min.js', __FILE__), array('jquery'), '1.1.6', true);
 }
+
+$title = block_field('title');
+$description = block_field('description');
+
 ?>
 
 <div class="ras-hp-car-carousel-wrapper">
   <div class="ras-hp-car-carousel <?php block_field('className'); ?>">
     <div class="ras-hp-car-carousel-inner">
 
-      <h2><?php block_field('title'); ?></h2>
-      <div class="ras-hp-car-carousel-description"><?php block_field('description'); ?></div>
+
+      <?php if ($title) : ?>  
+        <h2><?php echo $title ?></h2>
+      <?php endif; ?>
+
+      <?php if ($description) : ?>
+        <div class="ras-hp-car-carousel-description"><?php echo $description ?></div>
+      <?php endif; ?>
       
     
       <div class="ras-hp-car-carousel-slider-wrapper">
