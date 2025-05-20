@@ -126,6 +126,10 @@ figure.ras-hp-image-full-width {
   background-color: #FF5000;
   color: white;
 }
+.ras-qc-content-orange a {
+  color: white;
+  text-decoration: underline;
+}
 
 .ras-qc-content-orange h2,
 .ras-qc-content-orange h3 {

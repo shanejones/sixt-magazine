@@ -7,8 +7,8 @@ if (!wp_script_is('lightslider-js', 'enqueued')) {
     wp_enqueue_script('lightslider-js', plugins_url('../../scripts/lightslider/lightslider.min.js', __FILE__), array('jquery'), '1.1.6', true);
 }
 
-$title = block_field('title');
-$description = block_field('description');
+$title = block_field('title', false);
+$description = block_field('description', false);
 
 ?>
 
@@ -26,11 +26,9 @@ $description = block_field('description');
       <?php endif; ?>
       
     
-      <div class="ras-hp-car-carousel-slider-wrapper">
         <ul class="ras-hp-car-carousel-slider">
           <?php echo block_value('items'); ?>
         </ul>
-      </div>
     </div>
   </div>  
 </div>

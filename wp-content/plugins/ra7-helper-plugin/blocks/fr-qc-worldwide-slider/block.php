@@ -52,7 +52,6 @@ wp_localize_script($script_handle, 'worldwideSliderData', array(
 ?>
 <section class="ras-qc-content-black fr-qc-worldwide-slider slider-active">
   <div class="fr-qc-worldwide-slider-inner">
-    <h2 class="fr-qc-worldwide-slider-title">Worldwide destinations slider</h2>
     <div class="fr-qc-worldwide-slider-slider-wrapper">
       <ul id="fr-qc-worldwide-slider">
         <?php foreach ($slider_locations as $location) : ?>
