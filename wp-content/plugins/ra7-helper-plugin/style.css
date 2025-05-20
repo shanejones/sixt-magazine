@@ -12,6 +12,14 @@
   font-style: normal;
 }
 
+.font-helvetica-now {
+  font-family: 'Helvetica Now', sans-serif !important;
+}
+
+.font-helvetica-now-condensed {
+  font-family: 'Helvetica Now Condensed', sans-serif !important;
+}
+
 .post-template-full-width .breadcrumb {
   display: none;
 }

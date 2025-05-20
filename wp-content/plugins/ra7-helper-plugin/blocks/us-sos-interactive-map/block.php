@@ -439,4 +439,25 @@ function navigateLocations(direction) {
     // Scroll marker into view if needed
     markers[activeIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
+
+// Add click event listeners to markers
+document.addEventListener('DOMContentLoaded', function() {
+    const markers = document.querySelectorAll('.us-sos-map-marker');
+    const items = document.querySelectorAll('.us-sos-map-location-item');
+
+    markers.forEach((marker, index) => {
+        marker.addEventListener('click', function() {
+            // Remove active class from all items and markers
+            items.forEach(item => item.classList.remove('active'));
+            markers.forEach(m => m.classList.remove('active'));
+
+            // Add active class to clicked marker and corresponding item
+            marker.classList.add('active');
+            items[index].classList.add('active');
+
+            // Scroll marker into view if needed
+            marker.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    });
+});
 </script>

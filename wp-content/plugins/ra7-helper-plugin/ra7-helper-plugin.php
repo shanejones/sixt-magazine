@@ -7,14 +7,14 @@
  * Requires at least: 5.9
  * Tested up to:      6.1
  * Requires PHP:      7.0
- * Version:           1.32.0
+ * Version:           1.35.0
  * Author:            Rise at Seven
  * Author URI:        https://shanejones.co.uk
  * Text Domain:       rise-at-seven-blocks
  *
  * @package            rise-at-seven-blocks
  */
-define('RAS_HP_VERSION', '1.32.0');
+define('RAS_HP_VERSION', '1.35.0');
 
 /**
  * Exit if accessed directly.
