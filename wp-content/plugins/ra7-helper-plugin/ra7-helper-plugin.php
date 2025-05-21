@@ -7,14 +7,18 @@
  * Requires at least: 5.9
  * Tested up to:      6.1
  * Requires PHP:      7.0
- * Version:           1.36.0
+ * Version:           100.0.0
  * Author:            Rise at Seven
  * Author URI:        https://shanejones.co.uk
  * Text Domain:       rise-at-seven-blocks
  *
  * @package            rise-at-seven-blocks
  */
-define('RAS_HP_VERSION', '1.36.0');
+
+
+
+ // excessive version number to always override the gravity custom blocks version
+define('RAS_HP_VERSION', '100.0.0');
 
 /**
  * Exit if accessed directly.
@@ -72,9 +76,9 @@ function ras_override_style_import()
 {
   $post_id = get_the_ID();
 
-  $blocks = [
-    'footer-links-carousel'
-  ];
+  $blocks = array_map(function($dir) {
+    return basename($dir);
+  }, glob(__DIR__ . '/blocks/*', GLOB_ONLYDIR));
 
 
   foreach ($blocks as $block) {
@@ -83,8 +87,7 @@ function ras_override_style_import()
       $handle = 'genesis-custom-blocks__block-' . $block;
       $blocks_url = plugins_url() . '/ra7-helper-plugin/blocks/';
 
-      unregister_block_style('genesis-custom-blocks', 'block-footer-links-carousel');
-
+      unregister_block_style('genesis-custom-blocks', 'block-' . $block);
       wp_enqueue_style(
         $handle,
         $blocks_url . '/' . $block . '/block.css',
