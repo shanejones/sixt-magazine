@@ -2,6 +2,7 @@
 $link = block_field('link', false);
 $image_id = block_field('image', false); 
 $title = block_field('title', false);
+$button_text = block_field('button-text', false);
 
 if ($image_id) {
     $image = wp_get_attachment_image_src($image_id, 'medium')[0];
@@ -18,7 +19,7 @@ if ($image_id) {
       <p><?php echo $title; ?></p>
     </div>
     <div class="ras-hp-car-carousel-item-footer">
-      <p>Réservez maintenant</p>
+      <p><?php echo $button_text; ?></p>
     </div>
   </a>
 </li>

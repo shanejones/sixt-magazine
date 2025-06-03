@@ -23,7 +23,7 @@
 }
 
 .ras-sos-text h2 {
-  font-family: 'Helvetica Now Condensed', sans-serif;
+  font-family: 'Helvetica Now Condensed', sans-serif !important;
   font-size: 30px;
   color: white;
   margin: 0 0 1rem;
@@ -122,7 +122,7 @@
   }
 
   .ras-sos-text h2 {
-    font-size: 60px;
+    font-size: 60px !important;
   }
 
   .ras-sos-text .ras-sos-state {

@@ -7,7 +7,7 @@
  * Requires at least: 5.9
  * Tested up to:      6.1
  * Requires PHP:      7.0
- * Version:           100.0.0
+ * Version:           100.0.2
  * Author:            Rise at Seven
  * Author URI:        https://shanejones.co.uk
  * Text Domain:       rise-at-seven-blocks
@@ -18,7 +18,7 @@
 
 
  // excessive version number to always override the gravity custom blocks version
-define('RAS_HP_VERSION', '100.0.0');
+define('RAS_HP_VERSION', '100.0.2');
 
 /**
  * Exit if accessed directly.
