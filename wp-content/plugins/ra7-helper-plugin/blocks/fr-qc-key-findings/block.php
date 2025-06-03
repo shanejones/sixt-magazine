@@ -12,7 +12,7 @@ wp_enqueue_script('lightslider-js', plugins_url('../../scripts/lightslider/light
         <li class="key-finding-item"><h3>#2</h3><p>Helsinki, Oslo et Vienne sont les villes les plus calmes au monde en 2025</p></li>
         <li class="key-finding-item"><h3>#3</h3><p>Limoges obtient la meilleure note pour la qualité de ses espaces verts en France</p></li>
         <li class="key-finding-item"><h3>#4</h3><p>Portland est la ville qui offre les destinations touristiques les plus calmes</p></li>
-        <li class="key-finding-item"><h3>#5</h3><p>Les Bordelais passent le moins de temps dans les bouchons en France</p></li>
+        <li class="key-finding-item"><h3>#5</h3><p>Les habitants de Nîmes passent le moins de temps dans les bouchons</p></li>
       </ul>
     </div>
   </div>
