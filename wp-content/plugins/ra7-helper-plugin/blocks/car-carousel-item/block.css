@@ -1,29 +1,22 @@
 .ras-hp-car-carousel-item {
   list-style-type: none !important;
+  aspect-ratio: 3/2;
+
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 4px 4px 15px -6px rgba(0,0,0,0.5);
+  padding: 0 8px;
+  position: relative;
 }
 
 .ras-hp-car-carousel-item a {
-  box-shadow: 4px 4px 15px -6px rgba(0,0,0,0.5);
-  flex-direction: column;
-  margin: 0 8px;
-  position: relative;
+  aspect-ratio: 3/2;
   display: block;
-}
-
-.ras-hp-car-carousel-item .ras-hp-car-carousel-item-image {
+  height: 100%;
   width: 100%;
-  display: block;
-  height: auto;
-  border-radius: 10px;
-  overflow: hidden;
-  aspect-ratio: 4/3;
-} 
-
-.ras-hp-car-carousel-item .ras-hp-car-carousel-item-image img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .ras-hp-car-carousel-item-content {
@@ -63,17 +56,4 @@
 
 
 /* Desktop styles */
-@media (min-width: 800px) {
-
-  .ras-hp-car-carousel-item .ras-hp-car-carousel-item-image {
-    overflow: hidden; /* Needed for object-fit */
-  }
-
-  /* Make image fill the container */
-  .ras-hp-car-carousel-item .ras-hp-car-carousel-item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-}
+@media (min-width: 800px) {}
