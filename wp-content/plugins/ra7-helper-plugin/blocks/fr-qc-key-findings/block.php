@@ -8,7 +8,7 @@ wp_enqueue_script('lightslider-js', plugins_url('../../scripts/lightslider/light
     <h2 class="fr-qc-key-findings-title">POINTS CLÉS</h2>
     <div class="fr-qc-key-findings-slider-wrapper">
       <ul id="fr-qc-key-findings-slider">
-        <li class="key-finding-item"><h3>#1</h3><p>Aix-en-Provence est la ville le plus calme de France selon le classement</p></li>
+        <li class="key-finding-item"><h3>#1</h3><p>Aix-en-Provence est la ville la plus calme de France selon le classement</p></li>
         <li class="key-finding-item"><h3>#2</h3><p>Helsinki, Oslo et Vienne sont les villes les plus calmes au monde en 2025</p></li>
         <li class="key-finding-item"><h3>#3</h3><p>Limoges obtient la meilleure note pour la qualité de ses espaces verts en France</p></li>
         <li class="key-finding-item"><h3>#4</h3><p>Portland est la ville qui offre les destinations touristiques les plus calmes</p></li>
