@@ -1,0 +1,134 @@
+.us-vfab-content-side-scroll-wrapper {
+  position: relative;
+  height: 100vh;
+  overflow: hidden; /* Disable all native scrolling */
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  transition: position 0.1s ease;
+}
+
+/* Fixed positioning when scroll jacking is active */
+.us-vfab-content-side-scroll-wrapper.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Hide scrollbar but keep functionality */
+.us-vfab-content-side-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.us-vfab-content-side-scroll-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Intro section - 100vw wide */
+.us-vfab-content-intro {
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ff6b6b; /* Red for debugging */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* US content section */
+.us-vfab-content-us {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+/* US content items - 500px wide each */
+.us-vfab-content-us-item {
+  min-width: 500px;
+  width: 500px;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Unique background colors for each US item */
+.us-vfab-content-us-item:nth-child(1) {
+  background-color: #4ecdc4; /* Teal */
+}
+
+.us-vfab-content-us-item:nth-child(2) {
+  background-color: #45b7d1; /* Blue */
+}
+
+.us-vfab-content-us-item:nth-child(3) {
+  background-color: #96ceb4; /* Green */
+}
+
+.us-vfab-content-us-item:nth-child(4) {
+  background-color: #feca57; /* Yellow */
+}
+
+.us-vfab-content-us-item:nth-child(5) {
+  background-color: #ff9ff3; /* Pink */
+}
+
+/* UK content section - 100vw wide */
+.us-vfab-content-uk {
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  background-color: #a55eea; /* Purple for debugging */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Add some debug text content */
+.us-vfab-content-intro::after {
+  content: "INTRO SECTION";
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}
+
+.us-vfab-content-us-item::after {
+  content: "US ITEM " counter(item-counter);
+  counter-increment: item-counter;
+}
+
+.us-vfab-content-us-item:nth-child(1)::after {
+  content: "US ITEM 1";
+}
+
+.us-vfab-content-us-item:nth-child(2)::after {
+  content: "US ITEM 2";
+}
+
+.us-vfab-content-us-item:nth-child(3)::after {
+  content: "US ITEM 3";
+}
+
+.us-vfab-content-us-item:nth-child(4)::after {
+  content: "US ITEM 4";
+}
+
+.us-vfab-content-us-item:nth-child(5)::after {
+  content: "US ITEM 5";
+}
+
+.us-vfab-content-uk::after {
+  content: "UK SECTION";
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}

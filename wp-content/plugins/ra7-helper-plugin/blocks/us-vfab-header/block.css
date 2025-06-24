@@ -1,0 +1,12 @@
+.us-vfab-header {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  background-color: #fcc;
+}
+
+.us-vfab-header-content-wrapper {
+  padding: 100px 0;
+}
