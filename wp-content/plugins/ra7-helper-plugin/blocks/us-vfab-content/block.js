@@ -111,8 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if we've completed horizontal scrolling and should continue vertical
         if (hasCompletedHorizontalScroll && e.deltaY > 0) {
             // Allow normal vertical scrolling to continue
-            isScrollJacking = false;
-            toggleFixedPosition(false);
+            console.log('Allowing vertical scroll to continue past horizontal section');
             return;
         }
         
@@ -128,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             isScrollJacking = false;
             hasCompletedHorizontalScroll = false;
             toggleFixedPosition(false);
+            console.log('At start, allowing vertical scroll up');
             return;
         }
         
@@ -136,6 +136,11 @@ document.addEventListener('DOMContentLoaded', function() {
             isScrollJacking = false;
             hasCompletedHorizontalScroll = true;
             toggleFixedPosition(false);
+            
+            // Stop any ongoing animation
+            isAnimating = false;
+            scrollMomentum = 0;
+            
             console.log('Horizontal scrolling completed, resuming vertical scroll');
             return;
         }
@@ -151,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const momentum = e.deltaY * SCROLL_SPEED_MULTIPLIER;
         addScrollMomentum(momentum);
         
-        console.log('Smooth scroll jacking active. Position:', currentScrollPosition.toFixed(2));
+        console.log('Smooth scroll jacking active. Position:', currentScrollPosition.toFixed(2), '/ Max:', getTotalScrollWidth());
     }
 
     // Add event listeners
@@ -211,12 +216,29 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         const isActive = isHorizontalSectionActive();
         if (isActive !== wasActive) {
-            console.log('Horizontal section active:', isActive);
+            console.log('Horizontal section active:', isActive, 'Completed:', hasCompletedHorizontalScroll);
             wasActive = isActive;
             
-            // Handle fixed positioning on regular scroll events too
-            if (!isScrollJacking) {
-                toggleFixedPosition(isActive);
+            // If section is no longer active and we haven't completed horizontal scroll, reset
+            if (!isActive && !hasCompletedHorizontalScroll) {
+                toggleFixedPosition(false);
+                isScrollJacking = false;
+                isAnimating = false;
+                scrollMomentum = 0;
+                currentScrollPosition = 0;
+                targetScrollPosition = 0;
+                
+                // Reset transforms
+                const sections = scrollWrapper.children;
+                for (let i = 0; i < sections.length; i++) {
+                    sections[i].style.transform = '';
+                }
+            }
+            
+            // If we've completed horizontal scrolling and section is no longer active, reset completion flag
+            if (!isActive && hasCompletedHorizontalScroll) {
+                hasCompletedHorizontalScroll = false;
+                console.log('Reset completion flag - section no longer active');
             }
         }
     }, { passive: true });
