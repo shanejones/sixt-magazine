@@ -1,0 +1,221 @@
+.us-vfab-interactive-map-container {
+    background-color: #F4F4F4;
+    padding: 50px 0;
+}
+.us-vfab-interactive-map-container h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.us-vfab-interactive-map-inner {
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.us-vfab-interactive-map-content-wrapper {
+    order: 2;
+    flex: 1 1 auto;
+}
+
+.us-vfab-interactive-map-image {
+    order: 1;
+    flex: 1 1 auto;
+    position: relative;
+    max-width: 1024px;
+    margin: auto;
+    width: 100%;
+}
+
+.us-vfab-interactive-map-image .main-map {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.us-vfab-map-marker {
+    position: absolute;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    border: none !important;
+    border-radius: 15%;
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.us-vfab-map-marker.active {
+    background-color: black;
+    color: #fff;
+}
+
+.us-vfab-marker-icon {
+    display: none;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FF5000;
+}
+
+.us-vfab-map-marker.active .us-vfab-marker-icon {
+    display: block;
+}
+
+.us-vfab-interactive-map-content {
+    flex: 1 1 auto;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.us-vfab-interactive-map-content h2 {
+    font-size: 30px;
+}
+.us-vfab-interactive-map-content a {
+    color: #FF5000;
+    text-decoration: underline;
+}
+
+.us-vfab-map-navigation {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.us-vfab-nav-button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.us-vfab-nav-button:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+.us-vfab-nav-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.us-vfab-nav-button:disabled svg path {
+    stroke: #999;
+}
+
+.us-vfab-map-location-item-number {
+    font-size: 18px;
+    color: black;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.us-vfab-map-location-item-content-container {
+    padding: 20px;
+    background: white;
+}
+
+.us-vfab-map-location-item h2 {
+    font-size: 20px !important;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.us-vfab-map-location-item p {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.us-vfab-map-location-item {
+    display: none;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.us-vfab-map-location-item.active {
+    display: block;
+}
+
+.us-vfab-map-location-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+@media (min-width: 1024px) {
+    .us-vfab-interactive-map-container {
+        padding: 100px 0;
+    }
+    .us-vfab-interactive-map-inner {
+        flex-direction: row; 
+        align-items: flex-start; 
+    }
+
+    .us-vfab-interactive-map-content-wrapper {
+        order: 1;
+        flex: 1 1 30%;
+        margin-right: 20px;
+    }
+
+    .us-vfab-interactive-map-image {
+        order: 2;
+        flex: 1 1 70%;
+        max-width: 70%;
+    }
+
+    .us-vfab-interactive-map-image .main-map {
+        max-width: 100%;
+    }
+
+    .us-vfab-map-marker {
+        width: 30px;
+        height: 30px;
+    }
+
+    .us-vfab-marker-icon {
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        width: 30px;
+    }
+    .us-vfab-interactive-map-content h2 {
+        font-size: 35px;
+    }
+}
