@@ -2,11 +2,150 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: calc(100vh - 48px);
   width: 100%;
   background-color: #fcc;
 }
 
+@media (min-width: 840px) {
+  .us-vfab-header {
+    height: calc(100vh - 66px);
+  }
+}
+
 .us-vfab-header-content-wrapper {
   padding: 100px 0;
+}
+
+.us-vfab-logo-block {
+  padding: 20px 0 0 20px;
+}
+
+.us-vfab-header-content-wrapper-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.us-vfab-header-content {
+  width: 250px;
+}
+
+
+.us-vfab-header-content h1 {
+  font-size: 70px;
+  font-weight: bold;
+  color: white;
+  line-height: 0.95
+}
+
+@media (min-width: 350px) {
+  .us-vfab-header-content h1 {
+    font-size: 90px;
+  }
+  .us-vfab-header-content {
+    width: 420px;
+  }
+}
+
+@media (min-width: 480px) {
+  .us-vfab-header-content {
+    width: 420px;
+  }
+  .us-vfab-header-content h1 {
+    font-size: 130px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .us-vfab-header-content {
+    width: 550px;
+  }
+  .us-vfab-header-content h1 {
+    font-size: 170px;
+  }
+}
+
+.us-vfab-header-content p {
+  font-size: 19px;
+  line-height: 1.2;
+  color: white;
+  width: 250px;
+}
+
+@media (min-width: 480px) {
+  .us-vfab-header-content p {
+    font-size: 25px;
+    width: 340px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .us-vfab-header-content p {
+    font-size: 30px;
+    width: 430px;
+  }
+}
+
+.us-vfab-header-content h1 .last-word-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+  text-stroke: 2px white;
+}
+
+
+
+.us-vfab-header-bottom-tab {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.us-vfab-header-bottom-tab p {
+  background: white;
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 10px 10px 0 0;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.us-vfab-header-bottom-tab p::before,
+.us-vfab-header-bottom-tab p::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 15px;
+  height: 15px;
+}
+
+.us-vfab-header-bottom-tab p::before {
+  left: -15px;
+  background: radial-gradient(circle at top left, transparent 15px, white 15px);
+}
+
+.us-vfab-header-bottom-tab p::after {
+  right: -15px;
+  background: radial-gradient(circle at top right, transparent 15px, white 15px);
+}
+
+.us-vfab-header-bottom-tab-lower {
+  height: 40px;
+  background: white;
+  border-radius: 20px 20px 0 0;
+}
+
+@media (min-width: 840px) {
+  .us-vfab-header-bottom-tab p {
+    padding: 10px 40px;
+    font-size: 16px;
+  }
 }
