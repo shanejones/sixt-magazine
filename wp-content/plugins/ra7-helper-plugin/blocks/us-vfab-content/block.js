@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!scrollWrapper || !introSection || !ukSection) return;
 
     // Configuration variables
-    const SCROLL_SPEED_MULTIPLIER = 8; // Reduced for smoother scrolling
-    const KEYBOARD_SCROLL_AMOUNT = 100; // Arrow key scroll distance in pixels
+    const SCROLL_SPEED_MULTIPLIER = 4; // Reduced for smoother scrolling
+    const KEYBOARD_SCROLL_AMOUNT = 50; // Arrow key scroll distance in pixels
     const MOMENTUM_DECAY = 0.95; // How quickly momentum fades (0.9 = fast fade, 0.99 = slow fade)
     const MIN_MOMENTUM = 0.1; // Minimum momentum before stopping
 
