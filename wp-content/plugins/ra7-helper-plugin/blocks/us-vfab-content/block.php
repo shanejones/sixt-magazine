@@ -41,6 +41,6 @@ wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array
       <div class="us-vfab-content-cliffs" style="background-image: url(<?php echo plugins_url('images/right-cliffs.png', __FILE__); ?>);"></div>
       <div class="us-vfab-content-road" style="background-image: url(<?php echo plugins_url('images/road.png', __FILE__); ?>);"></div>
     </div>
-    <div class="us-vfab-content-uk"id="vfab-uk-items"></div>
+    <div class="us-vfab-content-uk" id="vfab-uk-items"></div>
   </div>
 </div>

@@ -82,4 +82,45 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('ScrollMagic: Resized and refreshed');
         }, 250);
     });
+
+    // Handle button clicks for smooth scrolling to sections
+    document.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const pinContainerTop = pinContainer.offsetTop;
+        const sceneDuration = horizontalScrollDistance * 2;
+        
+        if (e.target.id === 'scroll-us') {
+            // Scroll to US section (roughly 1/3 through the horizontal scroll)
+            const targetScroll = pinContainerTop + (sceneDuration * 0.33);
+            window.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+            });
+            console.log('Scrolling to US section');
+            
+        } else if (e.target.id === 'scroll-uk') {
+            // Scroll to UK section (roughly 2/3 through the horizontal scroll)
+            const targetScroll = pinContainerTop + (sceneDuration * 0.66);
+            window.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+            });
+            console.log('Scrolling to UK section');
+            
+        } else if (e.target.id === 'scroll-global') {
+            // Scroll to global section (separate block further down the page)
+            const globalSection = document.getElementById('vfab-global-items');
+            if (globalSection) {
+                const targetScroll = globalSection.offsetTop - 100; // Offset for better positioning
+                window.scrollTo({
+                    top: targetScroll,
+                    behavior: 'smooth'
+                });
+                console.log('Scrolling to Global section');
+            } else {
+                console.log('Global section not found');
+            }
+        }
+    });
 }); 
