@@ -1,11 +1,15 @@
 <?php
-// Enqueue the JavaScript for scroll jacking
-wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array('jquery'), '1.0.0', true);
+// Enqueue ScrollMagic and GSAP for scroll animations from local files
+wp_enqueue_script('gsap-js', plugins_url('../scripts/scrollmagic/gsap.min.js', __DIR__), array(), '3.12.2', true);
+wp_enqueue_script('scrollmagic-js', plugins_url('../scripts/scrollmagic/ScrollMagic.min.js', __DIR__), array(), '2.0.8', true);
+wp_enqueue_script('scrollmagic-gsap-js', plugins_url('../scripts/scrollmagic/animation.gsap.min.js', __DIR__), array('scrollmagic-js', 'gsap-js'), '2.0.8', true);
+wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array('jquery', 'scrollmagic-js', 'gsap-js'), '2.0.0', true);
 ?>
 
-<div class="us-vfab-content-side-scroll-wrapper">
-  <div class="us-vfab-content-intro">
-    <div class="us-vfab-content-intro-inner">
+<div class="us-vfab-content-side-scroll-wrapper" id="us-vfab-content-pin-container">
+  <div class="us-vfab-content-slides-container" id="us-vfab-content-slides">
+    <div class="us-vfab-content-intro">
+      <div class="us-vfab-content-intro-inner">
       <div class="us-vfab-content-intro-lead-content">
         <p>Bridges do more than just connect cities over bodies of water; they often define a city’s skyline, becoming a symbol for locals and a dream destination for tourists around the world.</p>
       </div>
@@ -37,5 +41,6 @@ wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array
     <div class="us-vfab-content-cliffs" style="background-image: url(<?php echo plugins_url('images/right-cliffs.png', __FILE__); ?>);"></div>
     <div class="us-vfab-content-road" style="background-image: url(<?php echo plugins_url('images/road.png', __FILE__); ?>);"></div>
   </div>
-  <div class="us-vfab-content-uk"></div>
+    <div class="us-vfab-content-uk"></div>
+  </div>
 </div>

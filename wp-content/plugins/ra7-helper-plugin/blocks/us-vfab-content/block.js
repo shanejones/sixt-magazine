@@ -1,245 +1,144 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const scrollWrapper = document.querySelector('.us-vfab-content-side-scroll-wrapper');
+    // Wait for ScrollMagic and GSAP to load
+    if (typeof ScrollMagic === 'undefined' || typeof gsap === 'undefined') {
+        console.error('ScrollMagic or GSAP not loaded');
+        return;
+    }
+
+    const pinContainer = document.getElementById('us-vfab-content-pin-container');
+    const slidesContainer = document.getElementById('us-vfab-content-slides');
     const introSection = document.querySelector('.us-vfab-content-intro');
-    const ukSection = document.querySelector('.us-vfab-content-uk');
+    const introInner = document.querySelector('.us-vfab-content-intro-inner');
     
-    if (!scrollWrapper || !introSection || !ukSection) return;
-
-    // Configuration variables
-    const SCROLL_SPEED_MULTIPLIER = 4; // Reduced for smoother scrolling
-    const KEYBOARD_SCROLL_AMOUNT = 50; // Arrow key scroll distance in pixels
-    const MOMENTUM_DECAY = 0.95; // How quickly momentum fades (0.9 = fast fade, 0.99 = slow fade)
-    const MIN_MOMENTUM = 0.1; // Minimum momentum before stopping
-
-    let isScrollJacking = false;
-    let ticking = false;
-    let isFixed = false;
-    let hasCompletedHorizontalScroll = false;
-    let currentScrollPosition = 0;
-    let targetScrollPosition = 0;
-    let scrollMomentum = 0;
-    let isAnimating = false;
-
-    // Check if the horizontal scroll section is in viewport
-    function isHorizontalSectionActive() {
-        const rect = scrollWrapper.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Section is active when it's in viewport
-        return rect.top <= 0 && rect.bottom >= 0;
+    if (!pinContainer || !slidesContainer || !introSection || !introInner) {
+        console.log('ScrollMagic containers not found');
+        return;
     }
 
-    // Get total scrollable width
-    function getTotalScrollWidth() {
-        return scrollWrapper.scrollWidth - scrollWrapper.clientWidth;
+    // Initialize ScrollMagic controller
+    const controller = new ScrollMagic.Controller();
+
+    // Function to check if we're on mobile
+    function isMobile() {
+        return window.innerWidth < 768;
     }
 
-    // Smooth animation function for Mac-like scrolling
-    function animateScroll() {
-        if (!isAnimating) return;
-
-        // Apply momentum decay
-        scrollMomentum *= MOMENTUM_DECAY;
+    // Function to calculate intro content overflow on mobile
+    function getIntroScrollHeight() {
+        if (!isMobile()) return 0;
         
-        // Update target position with momentum
-        targetScrollPosition += scrollMomentum;
+        const introHeight = introSection.offsetHeight;
+        const introContentHeight = introInner.scrollHeight;
+        const overflow = introContentHeight - introHeight;
         
-        // Clamp to bounds
-        const maxScroll = getTotalScrollWidth();
-        targetScrollPosition = Math.max(0, Math.min(maxScroll, targetScrollPosition));
-        
-        // Smooth interpolation towards target
-        const diff = targetScrollPosition - currentScrollPosition;
-        currentScrollPosition += diff * 0.1; // Smooth interpolation factor
-        
-        // Apply the scroll using transform for better performance
-        const sections = scrollWrapper.children;
-        for (let i = 0; i < sections.length; i++) {
-            sections[i].style.transform = `translateX(${-currentScrollPosition}px)`;
-        }
-        
-        // Stop animation if momentum is too small
-        if (Math.abs(scrollMomentum) < MIN_MOMENTUM && Math.abs(diff) < 0.5) {
-            isAnimating = false;
-            scrollMomentum = 0;
-        }
-        
-        if (isAnimating) {
-            requestAnimationFrame(animateScroll);
-        }
+        return Math.max(0, overflow);
     }
 
-    // Start smooth scrolling with momentum
-    function addScrollMomentum(delta) {
-        scrollMomentum = delta;
-        targetScrollPosition = currentScrollPosition;
-        
-        if (!isAnimating) {
-            isAnimating = true;
-            requestAnimationFrame(animateScroll);
-        }
-    }
-
-    // Check if we've reached the end of horizontal scrolling
-    function isAtEndOfHorizontalScroll() {
-        const maxScroll = getTotalScrollWidth();
-        return currentScrollPosition >= maxScroll - 10; // 10px tolerance
-    }
-
-    // Check if we're at the start of horizontal scrolling
-    function isAtStartOfHorizontalScroll() {
-        return currentScrollPosition <= 10; // 10px tolerance
-    }
-
-    // Toggle fixed positioning
-    function toggleFixedPosition(shouldBeFixed) {
-        if (shouldBeFixed && !isFixed) {
-            scrollWrapper.classList.add('fixed');
-            isFixed = true;
-            console.log('Fixed positioning enabled');
-        } else if (!shouldBeFixed && isFixed) {
-            scrollWrapper.classList.remove('fixed');
-            isFixed = false;
-            console.log('Fixed positioning disabled');
-        }
-    }
-
-    // Handle wheel events for scroll jacking
-    function handleScroll(e) {
-        const isActive = isHorizontalSectionActive();
-        
-        // Check if we've completed horizontal scrolling and should continue vertical
-        if (hasCompletedHorizontalScroll && e.deltaY > 0) {
-            // Allow normal vertical scrolling to continue
-            console.log('Allowing vertical scroll to continue past horizontal section');
-            return;
-        }
-        
-        // Check if the horizontal section is in viewport
-        if (!isActive) {
-            isScrollJacking = false;
-            hasCompletedHorizontalScroll = false;
-            return;
-        }
-
-        // If scrolling up and we're at the start, allow normal vertical scrolling
-        if (isAtStartOfHorizontalScroll() && e.deltaY < 0) {
-            isScrollJacking = false;
-            hasCompletedHorizontalScroll = false;
-            toggleFixedPosition(false);
-            console.log('At start, allowing vertical scroll up');
-            return;
-        }
-        
-        // If scrolling down and we've reached the end, complete horizontal scroll
-        if (isAtEndOfHorizontalScroll() && e.deltaY > 0) {
-            isScrollJacking = false;
-            hasCompletedHorizontalScroll = true;
-            toggleFixedPosition(false);
-            
-            // Stop any ongoing animation
-            isAnimating = false;
-            scrollMomentum = 0;
-            
-            console.log('Horizontal scrolling completed, resuming vertical scroll');
-            return;
-        }
-        
-        // Activate fixed positioning and start scroll jacking
-        toggleFixedPosition(true);
-        
-        // Prevent vertical scrolling and convert to horizontal with smooth momentum
-        e.preventDefault();
-        isScrollJacking = true;
-        
-        // Calculate momentum for smooth Mac-like scrolling
-        const momentum = e.deltaY * SCROLL_SPEED_MULTIPLIER;
-        addScrollMomentum(momentum);
-        
-        console.log('Smooth scroll jacking active. Position:', currentScrollPosition.toFixed(2), '/ Max:', getTotalScrollWidth());
-    }
-
-    // Add event listeners
-    window.addEventListener('wheel', handleScroll, { passive: false });
+    // Calculate the total width of all slides
+    const slides = slidesContainer.children;
+    let totalWidth = 0;
     
-    // Keyboard navigation (only when horizontal section is active)
-    document.addEventListener('keydown', function(e) {
-        if (!isHorizontalSectionActive()) return;
+    for (let i = 0; i < slides.length; i++) {
+        totalWidth += slides[i].offsetWidth;
+    }
+
+    // Calculate the distance we need to scroll horizontally
+    let horizontalScrollDistance = totalWidth - window.innerWidth;
+
+    // Create the horizontal scrolling animation using GSAP
+    const horizontalScrollTween = gsap.to(slidesContainer, {
+        x: -horizontalScrollDistance,
+        ease: "none",
+        duration: 1
+    });
+
+    // Calculate the total scroll distance needed
+    function getTotalScrollDistance() {
+        const introScrollHeight = getIntroScrollHeight();
+        return introScrollHeight + (horizontalScrollDistance * 2);
+    }
+
+    // Create ScrollMagic scene with adjusted duration for mobile intro scrolling
+    const pinScene = new ScrollMagic.Scene({
+        triggerElement: pinContainer,
+        triggerHook: 0,
+        duration: getTotalScrollDistance(),
+    })
+    .setPin(pinContainer)
+    .addTo(controller);
+
+    // Add progress-based animation that handles both intro scrolling and horizontal scrolling
+    pinScene.on("progress", function(event) {
+        const progress = event.progress;
+        const introScrollHeight = getIntroScrollHeight();
+        const totalDistance = getTotalScrollDistance();
         
-        switch(e.key) {
-            case 'ArrowLeft':
-                e.preventDefault();
-                addScrollMomentum(-KEYBOARD_SCROLL_AMOUNT);
-                break;
-            case 'ArrowRight':
-                e.preventDefault();
-                addScrollMomentum(KEYBOARD_SCROLL_AMOUNT);
-                break;
+        if (isMobile() && introScrollHeight > 0) {
+            // On mobile with intro overflow
+            const introScrollThreshold = introScrollHeight / totalDistance;
+            
+            if (progress <= introScrollThreshold) {
+                // We're in the intro scrolling phase
+                const introProgress = progress / introScrollThreshold;
+                const scrollTop = introProgress * introScrollHeight;
+                introSection.scrollTop = scrollTop;
+                
+                // Keep horizontal position at 0
+                gsap.set(slidesContainer, { x: 0 });
+            } else {
+                // We're in the horizontal scrolling phase
+                introSection.scrollTop = introScrollHeight; // Keep intro at bottom
+                const horizontalProgress = (progress - introScrollThreshold) / (1 - introScrollThreshold);
+                const xPosition = -horizontalScrollDistance * horizontalProgress;
+                gsap.set(slidesContainer, { x: xPosition });
+            }
+        } else {
+            // Desktop or mobile without intro overflow - just horizontal scroll
+            const xPosition = -horizontalScrollDistance * progress;
+            gsap.set(slidesContainer, { x: xPosition });
         }
     });
 
-    // Touch support for mobile
-    let touchStartX = 0;
-    let touchStartY = 0;
-    
-    scrollWrapper.addEventListener('touchstart', function(e) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-    
-    scrollWrapper.addEventListener('touchmove', function(e) {
-        if (!isHorizontalSectionActive()) return;
-        
-        if (!touchStartX || !touchStartY) return;
-        
-        const touchEndX = e.touches[0].clientX;
-        const touchEndY = e.touches[0].clientY;
-        
-        const diffX = touchStartX - touchEndX;
-        const diffY = touchStartY - touchEndY;
-        
-        // If horizontal swipe is more prominent than vertical
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-            e.preventDefault();
-            const swipeMomentum = diffX * 0.5;
-            addScrollMomentum(swipeMomentum);
-        }
-    }, { passive: false });
-    
-    scrollWrapper.addEventListener('touchend', function() {
-        touchStartX = 0;
-        touchStartY = 0;
-    }, { passive: true });
+    // Optional: Add some debugging
+    pinScene.on("enter", function () {
+        console.log("ScrollMagic: Entered horizontal scroll section");
+    });
 
-    // Debug: Log when horizontal section becomes active and handle fixed positioning
-    let wasActive = false;
-    window.addEventListener('scroll', function() {
-        const isActive = isHorizontalSectionActive();
-        if (isActive !== wasActive) {
-            console.log('Horizontal section active:', isActive, 'Completed:', hasCompletedHorizontalScroll);
-            wasActive = isActive;
-            
-            // If section is no longer active and we haven't completed horizontal scroll, reset
-            if (!isActive && !hasCompletedHorizontalScroll) {
-                toggleFixedPosition(false);
-                isScrollJacking = false;
-                isAnimating = false;
-                scrollMomentum = 0;
-                currentScrollPosition = 0;
-                targetScrollPosition = 0;
-                
-                // Reset transforms
-                const sections = scrollWrapper.children;
-                for (let i = 0; i < sections.length; i++) {
-                    sections[i].style.transform = '';
-                }
+    pinScene.on("leave", function () {
+        console.log("ScrollMagic: Left horizontal scroll section");
+    });
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            // Recalculate on resize
+            totalWidth = 0;
+            for (let i = 0; i < slides.length; i++) {
+                totalWidth += slides[i].offsetWidth;
             }
             
-            // If we've completed horizontal scrolling and section is no longer active, reset completion flag
-            if (!isActive && hasCompletedHorizontalScroll) {
-                hasCompletedHorizontalScroll = false;
-                console.log('Reset completion flag - section no longer active');
-            }
+            horizontalScrollDistance = totalWidth - window.innerWidth;
+            
+            // Update the scene duration with new calculations
+            pinScene.duration(getTotalScrollDistance());
+            pinScene.refresh();
+            
+            console.log('ScrollMagic: Resized and refreshed');
+        }, 250);
+    });
+
+    // Handle button clicks for smooth scrolling to sections
+    document.addEventListener('click', function(e) {
+        if (e.target.id === 'scroll-us') {
+            e.preventDefault();
+            // Scroll to US section (second slide)
+            const targetPosition = pinContainer.offsetTop;
+            window.scrollTo({
+                top: targetPosition + (horizontalScrollDistance * 0.3), // Adjust multiplier to reach US section
+                behavior: 'smooth'
+            });
         }
-    }, { passive: true });
+    });
 }); 
