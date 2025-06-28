@@ -22,7 +22,7 @@ $map_markers = [
 ];
 ?>
 
-<div class="us-vfab-interactive-map-container">
+<div class="us-vfab-interactive-map-container"id="vfab-global-items">
     <h2>The most iconic bridge views Worldwide</h2>
     <div class="us-vfab-interactive-map-inner">
         <div class="us-vfab-interactive-map-content-wrapper">

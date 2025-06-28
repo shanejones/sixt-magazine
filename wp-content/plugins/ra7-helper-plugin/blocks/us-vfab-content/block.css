@@ -10,6 +10,7 @@
   flex-direction: row;
   height: 100vh;
   width: 100%;
+  transform: translateX(0); /* Ensure initial position shows intro section */
 }
 
 /* Intro section - 100vw wide */

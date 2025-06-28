@@ -21,26 +21,26 @@ wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array
         <p>Whether you’re cruising into the city for the first time or chasing that golden hour view from a scenic overlook, make the most of the journey with a rental car that gets you there in style and comfort. Rent your ride today and let the road—and the view—lead the way.</p>
         <div class="us-vfab-content-intro-lower-content-buttons">
           <button id="scroll-us">Discover US</button>
-          <button id="scroll-us">Discover UK</button>
-          <button id="scroll-us">Discover Global</button>
+          <button id="scroll-uk">Discover UK</button>
+          <button id="scroll-global">Discover Global</button>
         </div>
       </div>
     </div>
-  </div>
-  <div class="us-vfab-content-us" style="background-image: url(<?php echo plugins_url('images/sea-tile.jpg', __FILE__); ?>);">
-    <div class="us-vfab-content-cliffs" style="background-image: url(<?php echo plugins_url('images/left-cliffs.png', __FILE__); ?>);"></div>
-    <div class="us-vfab-content-us-item">
-      <div class="us-vfab-content-us-item-content">
-        <h2>The most iconic bridge views in the u.s.</h2>
-        <p>From the glowing cityscape seen on a night drive across the Brooklyn Bridge, welcoming you into Manhattan, to the peaceful views from the New River Gorge Bridge in the Appalachians, these structures offer more than just passage. They offer perspective.</p>
-      </div>  
     </div>
-    <div class="us-vfab-content-us-item">Item 1</div>
-    <div class="us-vfab-content-us-item">Item 2</div>
-    <div class="us-vfab-content-us-item">Item 3</div>
-    <div class="us-vfab-content-cliffs" style="background-image: url(<?php echo plugins_url('images/right-cliffs.png', __FILE__); ?>);"></div>
-    <div class="us-vfab-content-road" style="background-image: url(<?php echo plugins_url('images/road.png', __FILE__); ?>);"></div>
-  </div>
-    <div class="us-vfab-content-uk"></div>
+    <div class="us-vfab-content-us" id="vfab-us-items" style="background-image: url(<?php echo plugins_url('images/sea-tile.jpg', __FILE__); ?>);">
+      <div class="us-vfab-content-cliffs" style="background-image: url(<?php echo plugins_url('images/left-cliffs.png', __FILE__); ?>);"></div>
+      <div class="us-vfab-content-us-item">
+        <div class="us-vfab-content-us-item-content">
+          <h2>The most iconic bridge views in the u.s.</h2>
+          <p>From the glowing cityscape seen on a night drive across the Brooklyn Bridge, welcoming you into Manhattan, to the peaceful views from the New River Gorge Bridge in the Appalachians, these structures offer more than just passage. They offer perspective.</p>
+        </div>  
+      </div>
+      <div class="us-vfab-content-us-item">Item 1</div>
+      <div class="us-vfab-content-us-item">Item 2</div>
+      <div class="us-vfab-content-us-item">Item 3</div>
+      <div class="us-vfab-content-cliffs" style="background-image: url(<?php echo plugins_url('images/right-cliffs.png', __FILE__); ?>);"></div>
+      <div class="us-vfab-content-road" style="background-image: url(<?php echo plugins_url('images/road.png', __FILE__); ?>);"></div>
+    </div>
+    <div class="us-vfab-content-uk"id="vfab-uk-items"></div>
   </div>
 </div>
