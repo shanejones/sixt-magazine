@@ -118,6 +118,11 @@
   bottom: 78px;
   z-index: 5;
 }
+@media(min-width: 768px){
+  .us-vfab-content-us-item-index {
+    left: 130px;
+  }
+}
 .us-vfab-content-us-item-index:before {
   content: "";
   position: absolute;
@@ -539,7 +544,7 @@
 
   /* US section updates */
   .us-vfab-content-us-item {
-    margin: 200px 5vw 103px;
+    margin: 200px 20px 103px;
     height: calc(100vh - 300px);
     transition: width 0.4s ease;
   }
@@ -548,6 +553,7 @@
   .us-vfab-content-us-item-image-container {
     width: 320px;
     height: 420px;
+    margin-left: 0;
   }
 
   .us-vfab-content-us-item-title {
@@ -616,7 +622,7 @@
   }
 
   .us-vfab-content-us-item.expanded {
-    width: 800px;
+    width: 680px;
   }
 
   .us-vfab-content-us-item-description-content p {
