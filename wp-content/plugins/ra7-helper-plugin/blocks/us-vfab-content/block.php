@@ -8,6 +8,40 @@ wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array
 
 
 
+$us_slider_items = [
+  [
+      'title' => 'This is the bridge name 1',
+      'location' => 'Location, Country',
+      'description' => '<p>The Hangzhou Bay Bridge is a remarkable feat of engineering and one of the longest sea-crossing bridges in the world. Spanning over 22 miles across China\'s Hangzhou Bay, it connects the cities of Jiaxing and Ningbo, cutting travel time and making long-distance drives along the coast more efficient and scenic. With its sleek design and impressive scale, driving across the bridge offers a unique experience. Surrounded by open water and sky, it\'s a moment of calm and awe in the middle of a journey. </p>',
+      'image' => plugin_dir_url( __FILE__ ) . 'uk-slider-images/1-aix-en-provence.jpg'
+  ],
+  [
+      'title' => 'This is the bridge name 2',
+      'location' => 'Location, Country',
+      'description' => '<p>The Hangzhou Bay Bridge is a remarkable feat of engineering and one of the longest sea-crossing bridges in the world. Spanning over 22 miles across China\'s Hangzhou Bay, it connects the cities of Jiaxing and Ningbo, cutting travel time and making long-distance drives along the coast more efficient and scenic. With its sleek design and impressive scale, driving across the bridge offers a unique experience. Surrounded by open water and sky, it\'s a moment of calm and awe in the middle of a journey. </p>',
+      'image' => plugin_dir_url( __FILE__ ) . 'uk-slider-images/1-aix-en-provence.jpg'
+  ],
+  [
+      'title' => 'This is the bridge name 3 ',
+      'location' => 'Location, Country',
+      'description' => '<p>The Hangzhou Bay Bridge is a remarkable feat of engineering and one of the longest sea-crossing bridges in the world. Spanning over 22 miles across China\'s Hangzhou Bay, it connects the cities of Jiaxing and Ningbo, cutting travel time and making long-distance drives along the coast more efficient and scenic. With its sleek design and impressive scale, driving across the bridge offers a unique experience. Surrounded by open water and sky, it\'s a moment of calm and awe in the middle of a journey. </p>',
+      'image' => plugin_dir_url( __FILE__ ) . 'uk-slider-images/1-aix-en-provence.jpg'
+  ],
+  [
+      'title' => 'This is the bridge name 4',
+      'location' => 'Location, Country',
+      'description' => '<p>The Hangzhou Bay Bridge is a remarkable feat of engineering and one of the longest sea-crossing bridges in the world. Spanning over 22 miles across China\'s Hangzhou Bay, it connects the cities of Jiaxing and Ningbo, cutting travel time and making long-distance drives along the coast more efficient and scenic. With its sleek design and impressive scale, driving across the bridge offers a unique experience. Surrounded by open water and sky, it\'s a moment of calm and awe in the middle of a journey. </p>',
+      'image' => plugin_dir_url( __FILE__ ) . 'uk-slider-images/1-aix-en-provence.jpg'
+  ],
+  [
+      'title' => 'This is the bridge name 5',
+      'location' => 'Location, Country',
+      'description' => '<p>The Hangzhou Bay Bridge is a remarkable feat of engineering and one of the longest sea-crossing bridges in the world. Spanning over 22 miles across China\'s Hangzhou Bay, it connects the cities of Jiaxing and Ningbo, cutting travel time and making long-distance drives along the coast more efficient and scenic. With its sleek design and impressive scale, driving across the bridge offers a unique experience. Surrounded by open water and sky, it\'s a moment of calm and awe in the middle of a journey. </p>',
+      'image' => plugin_dir_url( __FILE__ ) . 'uk-slider-images/1-aix-en-provence.jpg'
+  ],
+];
+
+
 $uk_slider_items = [
   [
       'title' => 'This is the bridge name 1',
@@ -75,9 +109,35 @@ $uk_slider_items = [
           <p>From the glowing cityscape seen on a night drive across the Brooklyn Bridge, welcoming you into Manhattan, to the peaceful views from the New River Gorge Bridge in the Appalachians, these structures offer more than just passage. They offer perspective.</p>
         </div>  
       </div>
-      <div class="us-vfab-content-us-item">Item 1</div>
-      <div class="us-vfab-content-us-item">Item 2</div>
-      <div class="us-vfab-content-us-item">Item 3</div>
+      <?php foreach ($us_slider_items as $index => $item) : ?>
+        <div class="us-vfab-content-us-item" data-index="<?php echo $index; ?>">
+          <div class="us-vfab-content-us-item-image-container">
+            <img src="<?php echo esc_url($item['image']); ?>" alt="<?php echo esc_attr($item['title']); ?>" class="us-vfab-content-us-item-image">
+            <div class="us-vfab-content-us-item-overlay">
+              <h4 class="us-vfab-content-us-item-title"><?php echo esc_html($item['title']); ?></h4>
+              <p class="us-vfab-content-us-item-location"><?php echo esc_html($item['location']); ?></p>
+            </div>
+
+            <div class="us-vfab-content-us-item-description">
+              <div class="us-vfab-content-us-item-description-content">
+                <div class="us-vfab-content-us-item-description-content-inner">
+                  <p><?php echo $item['description']; ?></p>
+                </div>
+              </div>
+              <button class="us-vfab-content-us-item-toggle" aria-label="Toggle description">
+                <svg class="us-vfab-content-us-item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="us-vfab-content-us-item-index">
+            <div class="us-vfab-content-us-item-index-inner">
+              <?php echo $index + 1; ?>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
       <div class="us-vfab-content-cliffs" style="background-image: url(<?php echo plugins_url('images/right-cliffs.png', __FILE__); ?>);"></div>
       <div class="us-vfab-content-road" style="background-image: url(<?php echo plugins_url('images/road.png', __FILE__); ?>);"></div>
     </div>
@@ -88,7 +148,7 @@ $uk_slider_items = [
         <div class="uk-slider-container">
           <button class="uk-slider-nav uk-slider-prev" aria-label="Previous slide">
             <svg class="uk-slider-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7.5 9L4.5 6L7.5 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7.5 9L4.5 6L7.5 3" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
           

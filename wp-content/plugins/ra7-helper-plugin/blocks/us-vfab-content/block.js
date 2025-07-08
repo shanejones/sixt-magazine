@@ -126,6 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize UK Slider
     initUKSlider();
+    
+    // Initialize US Bridge Toggle functionality
+    initUSBridgeToggles();
 });
 
 // UK Slider functionality (replaces previous implementation)
@@ -255,5 +258,47 @@ function initUKSlider() {
 
     // Initial render
     renderSlider();
+}
+
+// US Bridge Toggle functionality
+function initUSBridgeToggles() {
+    const toggleButtons = document.querySelectorAll('.us-vfab-content-us-item-toggle');
+    
+    if (!toggleButtons.length) {
+        console.log('No US bridge toggle buttons found');
+        return;
+    }
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Find the parent item
+            const parentItem = this.closest('.us-vfab-content-us-item');
+            if (!parentItem) return;
+            
+            // Check if this item is currently expanded
+            const isExpanded = parentItem.classList.contains('expanded');
+            
+            // Close all other expanded items
+            document.querySelectorAll('.us-vfab-content-us-item.expanded').forEach(item => {
+                if (item !== parentItem) {
+                    item.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle the current item
+            if (isExpanded) {
+                parentItem.classList.remove('expanded');
+                console.log('Collapsed US bridge item');
+            } else {
+                parentItem.classList.add('expanded');
+                console.log('Expanded US bridge item');
+            }
+        });
+    });
+    
+    console.log(`Initialized ${toggleButtons.length} US bridge toggle buttons`);
 }
 

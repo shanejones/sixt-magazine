@@ -98,25 +98,55 @@
   height: 100vh;
   flex-shrink: 0;
   width: auto;
+  overflow: hidden;
 }
 
 .us-vfab-content-us-item {
   width: 90vw;
-  height: 100vh;  
+  height: calc(100vh - 100px);
   flex-shrink: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   color: white;
+  position: relative;
+  margin: 50px 5vw;
 }
 
+.us-vfab-content-us-item-index {
+  position: absolute;
+  bottom: 78px;
+  z-index: 5;
+}
+.us-vfab-content-us-item-index:before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 60vh;
+  border-left: 2px solid white;
+  left: 19px;
+  bottom: 40px;
+}
+
+.us-vfab-content-us-item-index-inner {background: black;border-radius: 10px;width: 40px;height: 40px;display: flex;align-items: center;justify-content: center; color: white}
+
+.us-vfab-content-us-item-index-inner:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  left: 16px;
+  bottom: 35px;
+}
 .us-vfab-content-us-item-content {
   padding: 20px;
   color: white !important;
 }
 
 .us-vfab-content-us-item-content h2 {
-  font-size: 30px;
+  font-size: 0px;
   color: white !important;
 }
 
@@ -124,6 +154,16 @@
   font-size: 15px;
 }
 
+@media(min-width: 1024px){
+  .us-vfab-content-us-item-content h2 {
+    font-size: 50px !important;
+  }
+  
+  .us-vfab-content-us-item-content p {
+    font-size: 16px !important;
+  }
+
+}
 .us-vfab-content-cliffs {
   width: 100%;
   height: 100%;
@@ -135,10 +175,140 @@
 
 .us-vfab-content-road {
   position: absolute;
-  bottom: 10%;
+  bottom: 50px;
+  width: 5000%;
+  height: 157px;
+  background-size: 250px;
+}
+
+@media(min-width: 768px){
+.us-vfab-content-road { 
+  height: 205px;
+  background-size: 300px
+}
+  
+}
+
+/* US Bridge Items - Mobile First */
+.us-vfab-content-us-item-image-container {
+  position: relative;
   width: 100%;
-  height: 126px;
-  background-size: 200px;
+  height: 280px;
+  margin: 0 auto;
+  z-index: 100;
+}
+
+.us-vfab-content-us-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  position: relative;
+  z-index: 100;
+}
+
+.us-vfab-content-us-item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 15px;
+  backdrop-filter: blur(5px);
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  z-index: 110;
+}
+
+.us-vfab-content-us-item-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 5px 0;
+  line-height: 1.2;
+}
+
+.us-vfab-content-us-item-location {
+  font-size: 15px;
+  font-weight: bold;
+  color: #666;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.us-vfab-content-us-item-toggle {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 30px;
+  background: white !important;
+  border: none;
+  border-radius: 0 0 10px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none;
+  z-index: 10;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.us-vfab-content-us-item-toggle:hover,
+.us-vfab-content-us-item-toggle:focus,
+.us-vfab-content-us-item-toggle:active,
+.us-vfab-content-us-item-toggle:focus-visible {
+  outline: none !important;
+  background: white !important;
+  transform: translateX(-50%) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.us-vfab-content-us-item-arrow {
+  color: black !important;
+  transition: none;
+}
+
+.us-vfab-content-us-item.expanded .us-vfab-content-us-item-arrow {
+  transform: rotate(180deg);
+}
+
+.us-vfab-content-us-item-description {
+  position: absolute;
+  padding: 0 10px;
+  width: 100%;
+  top: 100%;
+}
+
+.us-vfab-content-us-item-description-content {
+  background: white;
+  width: 90%;
+  backdrop-filter: blur(5px);
+  margin: auto;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.us-vfab-content-us-item-description-content-inner {
+  padding: 0 0 0 20px;
+}
+
+.us-vfab-content-us-item.expanded .us-vfab-content-us-item-description-content {
+  max-height: 500px;
+}
+
+.us-vfab-content-us-item-description-content p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.4;
+  margin: 0;
 }
 
 /* UK section - Mobile first */
@@ -153,6 +323,7 @@
   justify-content: center;
   padding: 20px 15px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .us-vfab-content-uk-inner {
@@ -368,7 +539,88 @@
 
   /* US section updates */
   .us-vfab-content-us-item {
-    width: 500px;
+    margin: 200px 5vw 103px;
+    height: calc(100vh - 300px);
+    transition: width 0.4s ease;
+  }
+
+  /* US Bridge Items - Desktop */
+  .us-vfab-content-us-item-image-container {
+    width: 320px;
+    height: 420px;
+  }
+
+  .us-vfab-content-us-item-title {
+    font-size: 20px;
+  }
+
+  .us-vfab-content-us-item-location {
+    font-size: 16px;
+  }
+
+  .us-vfab-content-us-item-toggle {
+    top: 20px;
+    right: -34px;
+    width: 30px;
+    height: 380px;
+    border-radius: 0 10px 10px 0;
+    background: white !important;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: none;
+    z-index: 10;
+    left: auto;
+    padding: 0;
+  }
+
+  .us-vfab-content-us-item-toggle:hover,
+  .us-vfab-content-us-item-toggle:focus,
+  .us-vfab-content-us-item-toggle:active,
+  .us-vfab-content-us-item-toggle:focus-visible {
+    outline: none !important;
+    background: white !important;
+    border: none !important;
+  }
+
+  .us-vfab-content-us-item-arrow {
+    transform: rotate(-90deg);
+    color: black !important;
+    transition: transform 0.3s ease;
+  }
+
+  .us-vfab-content-us-item.expanded .us-vfab-content-us-item-arrow {
+    transform: rotate(90deg);
+  }
+
+  .us-vfab-content-us-item-description {
+    top: 0;
+    right: -10px;
+    width: 320px;
+    transition: right 0.4s ease;
+  }
+
+  .us-vfab-content-us-item.expanded .us-vfab-content-us-item-description {
+    right: -300px;
+  }
+
+  .us-vfab-content-us-item-description-content {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    /* overflow: hidden; */
+    max-height: none;
+    margin-top: 10px;
+    height: 400px;
+  }
+
+  .us-vfab-content-us-item.expanded {
+    width: 800px;
+  }
+
+  .us-vfab-content-us-item-description-content p {
+    font-size: 16px;
   }
 
   /* UK section updates */
