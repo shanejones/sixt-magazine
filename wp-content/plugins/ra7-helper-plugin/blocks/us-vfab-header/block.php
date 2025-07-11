@@ -40,9 +40,9 @@ if($background_image) {
   </div>
   <div class="us-vfab-header-bottom-tab">
     <p>Scroll Down <svg xmlns="http://www.w3.org/2000/svg" width="12.158" height="6.947" viewBox="0 0 12.158 6.947">
-  <path id="Path_41830" data-name="Path 41830" d="M6.693,5.467a.87.87,0,0,1,0,1.229L1.484,11.9A.869.869,0,0,1,.254,10.676l4.6-4.6L.257,1.484A.869.869,0,0,1,1.486.255L6.7,5.464Z" transform="translate(12.159) rotate(90)"/>
-</svg>
-</p>
+        <path id="Path_41830" data-name="Path 41830" d="M6.693,5.467a.87.87,0,0,1,0,1.229L1.484,11.9A.869.869,0,0,1,.254,10.676l4.6-4.6L.257,1.484A.869.869,0,0,1,1.486.255L6.7,5.464Z" transform="translate(12.159) rotate(90)"/>
+      </svg>
+    </p>
     <div class="us-vfab-header-bottom-tab-lower">
     </div>
   </div>

@@ -1,3 +1,4 @@
+/* Base Styles */
 .us-vfab-header {
   background-size: cover;
   background-position: center;
@@ -7,14 +8,8 @@
   background-color: #fcc;
 }
 
-@media (min-width: 840px) {
-  .us-vfab-header {
-    height: calc(100vh - 66px);
-  }
-}
-
 .us-vfab-header-content-wrapper {
-  padding: 100px 0;
+  padding: 10vh 0;
 }
 
 .us-vfab-logo-block {
@@ -31,39 +26,11 @@
   width: 250px;
 }
 
-
 .us-vfab-header-content h1 {
   font-size: 70px;
   font-weight: bold;
   color: white;
   line-height: 0.95
-}
-
-@media (min-width: 350px) {
-  .us-vfab-header-content h1 {
-    font-size: 90px;
-  }
-  .us-vfab-header-content {
-    width: 320px;
-  }
-}
-
-@media (min-width: 480px) {
-  .us-vfab-header-content {
-    width: 420px;
-  }
-  .us-vfab-header-content h1 {
-    font-size: 130px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .us-vfab-header-content {
-    width: 550px;
-  }
-  .us-vfab-header-content h1 {
-    font-size: 170px;
-  }
 }
 
 .us-vfab-header-content p {
@@ -73,27 +40,15 @@
   width: 250px;
 }
 
-@media (min-width: 480px) {
-  .us-vfab-header-content p {
-    font-size: 25px;
-    width: 340px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .us-vfab-header-content p {
-    font-size: 30px;
-    width: 430px;
-  }
-}
-
 .us-vfab-header-content h1 .last-word-outline {
   color: transparent;
   -webkit-text-stroke: 2px white;
   text-stroke: 2px white;
 }
 
-
+.logged-in .us-vfab-header-bottom-tab {
+  bottom: -32px;
+}
 
 .us-vfab-header-bottom-tab {
   position: absolute;
@@ -143,9 +98,75 @@
   border-radius: 20px 20px 0 0;
 }
 
+/* Media Queries */
+@media (min-width: 350px) {
+  .us-vfab-header-content h1 {
+    font-size: 90px;
+  }
+  .us-vfab-header-content {
+    width: 320px;
+  }
+}
+
+@media (min-width: 480px) {
+  .us-vfab-header-content {
+    width: 420px;
+  }
+  .us-vfab-header-content h1 {
+    font-size: 130px;
+  }
+  .us-vfab-header-content p {
+    font-size: 25px;
+    width: 340px;
+  }
+}
+
 @media (min-width: 840px) {
+  .us-vfab-header {
+    height: calc(100vh - 66px);
+  }
   .us-vfab-header-bottom-tab p {
     padding: 10px 40px;
     font-size: 16px;
+  }
+}
+
+/* Large screens with sufficient height */
+@media (min-width: 1500px) and (min-height: 800px) {
+  .us-vfab-header-content {
+    width: 550px;
+  }
+  .us-vfab-header-content h1 {
+    font-size: 170px;
+  }
+  .us-vfab-header-content p {
+    font-size: 30px;
+    width: 430px;
+  }
+}
+
+/* Height-based adjustments for landscape screens */
+@media (orientation: landscape) and (max-height: 500px) {
+  .us-vfab-header-content-wrapper {
+    padding: 3vh 0;
+  }
+  .us-vfab-header-content h1 {
+    font-size: 50px;
+    line-height: 0.9;
+  }
+  .us-vfab-header-content p {
+    font-size: 16px;
+  }
+  .us-vfab-logo-block {
+    padding: 10px 0 0 20px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) and (min-width: 840px) {
+  .us-vfab-header-content h1 {
+    font-size: 80px;
+  }
+  .us-vfab-header-content p {
+    font-size: 18px;
   }
 }

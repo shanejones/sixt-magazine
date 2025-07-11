@@ -64,7 +64,7 @@ $map_locations = [
         'title' => 'Mike O\'Callaghan–Pat Tillman Memorial Bridge',
         'location' => 'Mohave County, Arizona, USA',
         'description' => '<p>The Mike O\'Callaghan–Pat Tillman Memorial Bridge spans the Colorado River between Arizona and Nevada, just downstream from the Hoover Dam. Opened in 2010, it\'s one of the highest bridges in the U.S. and features a pedestrian walkway with stunning views of the dam and river. Named after a former governor and a fallen soldier, the bridge is both a vital roadway and a powerful symbol of American resilience.</p>',
-        'image' => plugin_dir_url( __FILE__ ) . 'map-images/11-mike-ocallaghan-pat-tillman-memorial-bridge.jpg'
+        'image' => plugin_dir_url( __FILE__ ) . 'map-images/11-mike-o-callaghan–pat-tillman-memorial-bridge.jpg'
     ],
     [
         'title' => 'Great Belt Bridge',
@@ -76,7 +76,7 @@ $map_locations = [
         'title' => 'Yi Sun-sin Bridge',
         'location' => 'Jeollanam-do, South Korea',
         'description' => '<p>The Yi Sun-sin Bridge in South Korea spans Yeosu Harbor, linking Gwangyang and Yeosu. Opened in 2012, it\'s one of the longest suspension bridges in the world and a symbol of Korean engineering. Named after Admiral Yi Sun-sin, it honors his legacy while serving as a key transport route. With sidewalks on both sides, visitors can walk across and enjoy sweeping views of the harbor and surrounding landscapes.</p>',
-        'image' => plugin_dir_url( __FILE__ ) . 'map-images/13-yi-sun-sin-bridge.jpg'
+        'image' => plugin_dir_url( __FILE__ ) . 'map-images/13-yi-sun-si-bridge.jpg'
     ],
     [
         'title' => 'Mackinac Bridge',
