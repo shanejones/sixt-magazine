@@ -198,8 +198,6 @@ $uk_slider_items = [
 
 
 
-
-
 <div class="us-vfab-content-side-scroll-wrapper" id="us-vfab-content-pin-container">
   <div class="us-vfab-content-slides-container" id="us-vfab-content-slides">
     <div class="us-vfab-content-intro">
@@ -214,9 +212,9 @@ $uk_slider_items = [
         <p>City skylines and sweeping views inspire a sense of pride and excitement for the place people are lucky enough to visit or call home. With that in mind, we ranked the top 200 bridges across the world based on height, length, and architectural significance - reviewing volume of traffic, Google reviews, search demand and social media to find the most iconic bridge views in the United States, United Kingdom and globally.</p>
         <p>Whether you're cruising into the city for the first time or chasing that golden hour view from a scenic overlook, make the most of the journey with a rental car that gets you there in style and comfort. Rent your ride today and let the road—and the view—lead the way.</p>
         <div class="us-vfab-content-intro-lower-content-buttons">
-          <button id="scroll-us">Discover US</button>
-          <button id="scroll-uk">Discover UK</button>
-          <button id="scroll-global">Discover Global</button>
+          <button type="button" id="scroll-us">Discover US</button>
+          <button type="button" id="scroll-uk">Discover UK</button>
+          <button type="button" id="scroll-global">Discover Global</button>
         </div>
       </div>
     </div>
@@ -261,8 +259,9 @@ $uk_slider_items = [
       <div class="us-vfab-content-cliffs" style="background-image: url(<?php echo plugins_url('images/right-cliffs.png', __FILE__); ?>);"></div>
       <div class="us-vfab-content-road" style="background-image: url(<?php echo plugins_url('images/road.png', __FILE__); ?>);"></div>
     </div>
-    <div class="us-vfab-content-uk" id="vfab-uk-items">
+    <div class="us-vfab-content-uk" id="vfab-uk-items" style="position: relative;">
       <div class="us-vfab-content-uk-inner">
+        <div id="uk-scroll-anchor" style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background-color: red;"></div>
         <h3>The most iconic bridge views in the UK</h3>
         
         <div class="uk-slider-container">

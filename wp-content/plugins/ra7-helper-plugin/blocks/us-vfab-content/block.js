@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Wait for ScrollMagic and GSAP to load
     if (typeof ScrollMagic === 'undefined' || typeof gsap === 'undefined') {
         console.error('ScrollMagic or GSAP not loaded');
         return;
@@ -15,10 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Initialize ScrollMagic controller
     const controller = new ScrollMagic.Controller();
 
-    // Calculate the total width of all slides
     const slides = slidesContainer.children;
     let totalWidth = 0;
     
@@ -26,33 +23,27 @@ document.addEventListener('DOMContentLoaded', function() {
         totalWidth += slides[i].offsetWidth;
     }
 
-    // Calculate the distance we need to scroll horizontally
     let horizontalScrollDistance = totalWidth - window.innerWidth;
     
-    // Debug: Log width calculations
     console.log(`Total slides width: ${totalWidth}, Window width: ${window.innerWidth}, Horizontal scroll distance: ${horizontalScrollDistance}`);
     console.log(`Slides: intro(${slides[0].offsetWidth}px), us(${slides[1].offsetWidth}px), uk(${slides[2].offsetWidth}px)`);
 
-    // Set initial position - make sure we start at the intro
     gsap.set(slidesContainer, { x: 0 });
 
-    // Create simple horizontal scrolling animation
     const horizontalScrollTween = gsap.to(slidesContainer, {
         x: -horizontalScrollDistance,
         ease: "none"
     });
 
-    // Create ScrollMagic scene - simple horizontal scroll
     const pinScene = new ScrollMagic.Scene({
         triggerElement: pinContainer,
         triggerHook: 0,
-        duration: horizontalScrollDistance * 2, // Simple duration based on scroll distance
+        duration: horizontalScrollDistance * 2,
     })
     .setPin(pinContainer)
     .setTween(horizontalScrollTween)
     .addTo(controller);
 
-    // Add some basic event logging
     pinScene.on("enter", function () {
         console.log("ScrollMagic: Entered horizontal scroll section");
     });
@@ -61,12 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("ScrollMagic: Left horizontal scroll section");
     });
 
-    // Handle window resize
     let resizeTimeout;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function() {
-            // Recalculate on resize
             totalWidth = 0;
             for (let i = 0; i < slides.length; i++) {
                 totalWidth += slides[i].offsetWidth;
@@ -74,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             horizontalScrollDistance = totalWidth - window.innerWidth;
             
-            // Update the tween and scene
             horizontalScrollTween.vars.x = -horizontalScrollDistance;
             pinScene.duration(horizontalScrollDistance * 2);
             pinScene.refresh();
@@ -83,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 250);
     });
 
-    // Handle button clicks for smooth scrolling to sections
     document.addEventListener('click', function(e) {
         e.preventDefault();
         
@@ -91,28 +78,42 @@ document.addEventListener('DOMContentLoaded', function() {
         const sceneDuration = horizontalScrollDistance * 2;
         
         if (e.target.id === 'scroll-us') {
-            // Scroll to US section (roughly 1/3 through the horizontal scroll)
-            const targetScroll = pinContainerTop + (sceneDuration * 0.33);
-            window.scrollTo({
-                top: targetScroll,
-                behavior: 'smooth'
-            });
-            console.log('Scrolling to US section');
+            const introSection = document.querySelector('.us-vfab-content-intro');
+            const usSection = document.querySelector('.us-vfab-content-us');
+            if (introSection && usSection) {
+                const usOffset = introSection.offsetWidth;
+                const scrollProgress = usOffset / horizontalScrollDistance;
+                const targetScroll = pinContainerTop + (sceneDuration * scrollProgress);
+                window.scrollTo({
+                    top: targetScroll,
+                    behavior: 'smooth'
+                });
+                console.log('Scrolling to US section');
+            }
             
         } else if (e.target.id === 'scroll-uk') {
-            // Scroll to UK section (roughly 2/3 through the horizontal scroll)
-            const targetScroll = pinContainerTop + (sceneDuration * 0.66);
-            window.scrollTo({
-                top: targetScroll,
-                behavior: 'smooth'
-            });
-            console.log('Scrolling to UK section');
-            
+            const anchor = document.getElementById('uk-scroll-anchor');
+            const ukSection = document.getElementById('vfab-uk-items');
+            if (anchor && ukSection) {
+                // Calculate the anchor's position relative to the slides container
+                const anchorPositionInSlides = ukSection.offsetLeft + anchor.offsetLeft + anchor.offsetWidth;
+                // We want to scroll until the anchor is at the right edge of the viewport
+                const targetX = anchorPositionInSlides - window.innerWidth;
+                
+                // Convert horizontal position to scroll progress
+                const scrollProgress = targetX / horizontalScrollDistance;
+                const targetScroll = pinContainerTop + (sceneDuration * scrollProgress);
+
+                window.scrollTo({
+                    top: targetScroll,
+                    behavior: 'smooth'
+                });
+                console.log(`Scrolling to UK anchor. AnchorPos: ${anchorPositionInSlides}, TargetX: ${targetX}, ScrollProgress: ${scrollProgress}, TargetScroll: ${targetScroll}`);
+            }
         } else if (e.target.id === 'scroll-global') {
-            // Scroll to global section (separate block further down the page)
             const globalSection = document.getElementById('vfab-global-items');
             if (globalSection) {
-                const targetScroll = globalSection.offsetTop - 100; // Offset for better positioning
+                const targetScroll = globalSection.offsetTop - 100;
                 window.scrollTo({
                     top: targetScroll,
                     behavior: 'smooth'
@@ -124,14 +125,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Initialize UK Slider
     initUKSlider();
     
-    // Initialize US Bridge Toggle functionality
     initUSBridgeToggles();
 });
 
-// UK Slider functionality (replaces previous implementation)
 function initUKSlider() {
     const sliderTrack = document.getElementById('uk-bridges-slider');
     const prevButton = document.querySelector('.uk-slider-prev');
@@ -140,7 +138,6 @@ function initUKSlider() {
     const contentLocation = document.querySelector('.uk-slider-location');
     const contentDescription = document.querySelector('.uk-slider-description');
 
-    // Gather data from DOM (PHP already outputs all items as <li> with data- attributes)
     const allSlides = Array.from(sliderTrack.querySelectorAll('li')).map(slide => ({
         title: slide.dataset.title,
         location: slide.dataset.location,
@@ -151,10 +148,8 @@ function initUKSlider() {
     let currentIndex = 0;
     const totalSlides = allSlides.length;
 
-    // Helper to get indices for prev, active, next
     function getIndices(idx, isDesktop) {
         if (isDesktop) {
-            // 5 items: prev2, prev1, active, next1, next2
             const prev2 = (idx - 2 + totalSlides) % totalSlides;
             const prev1 = (idx - 1 + totalSlides) % totalSlides;
             const active = idx;
@@ -162,7 +157,6 @@ function initUKSlider() {
             const next2 = (idx + 2) % totalSlides;
             return [prev2, prev1, active, next1, next2];
         } else {
-            // 3 items: prev, active, next
             const prev = (idx - 1 + totalSlides) % totalSlides;
             const active = idx;
             const next = (idx + 1) % totalSlides;
@@ -170,7 +164,6 @@ function initUKSlider() {
         }
     }
 
-    // Render the 3 visible items
     function renderSlider(fade = false) {
         const isDesktop = window.innerWidth >= 1024;
         const indices = getIndices(currentIndex, isDesktop);
@@ -202,7 +195,6 @@ function initUKSlider() {
         } else {
             updateDOM(items, classes, indices);
         }
-        // Update content below
         const activeIdx = indices[isDesktop ? 2 : 1];
         if (contentTitle) contentTitle.textContent = allSlides[activeIdx].title;
         if (contentLocation) contentLocation.textContent = allSlides[activeIdx].location;
@@ -221,7 +213,6 @@ function initUKSlider() {
             li.setAttribute('data-title', item.title);
             li.setAttribute('data-location', item.location);
             li.setAttribute('data-description', item.description);
-            // Click: if not center, go to that item
             const isDesktop = window.innerWidth >= 1024;
             const centerIdx = isDesktop ? 2 : 1;
             if (i !== centerIdx) {
@@ -253,14 +244,11 @@ function initUKSlider() {
         prevSlide();
     });
 
-    // Re-render on resize
     window.addEventListener('resize', () => renderSlider());
 
-    // Initial render
     renderSlider();
 }
 
-// US Bridge Toggle functionality
 function initUSBridgeToggles() {
     const toggleButtons = document.querySelectorAll('.us-vfab-content-us-item-toggle');
     
@@ -274,21 +262,17 @@ function initUSBridgeToggles() {
             e.preventDefault();
             e.stopPropagation();
             
-            // Find the parent item
             const parentItem = this.closest('.us-vfab-content-us-item');
             if (!parentItem) return;
             
-            // Check if this item is currently expanded
             const isExpanded = parentItem.classList.contains('expanded');
             
-            // Close all other expanded items
             document.querySelectorAll('.us-vfab-content-us-item.expanded').forEach(item => {
                 if (item !== parentItem) {
                     item.classList.remove('expanded');
                 }
             });
             
-            // Toggle the current item
             if (isExpanded) {
                 parentItem.classList.remove('expanded');
                 console.log('Collapsed US bridge item');
