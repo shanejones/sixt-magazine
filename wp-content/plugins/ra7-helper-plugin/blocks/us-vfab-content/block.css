@@ -674,6 +674,35 @@
   }
 }
 
+/* Medium height screens - 720px to 800px */
+@media (min-height: 720px) and (max-height: 900px) {
+  .uk-slider-track {
+    height: 40vh !important;
+    max-height: 470px;
+  }
+
+  .uk-slider-container {
+    margin-bottom: 10px;
+  }
+
+  .us-vfab-content-uk h3 {
+    max-width: 760px !important;
+  }
+
+  .uk-slider-content {
+    max-width: 75% !important;
+  }
+
+  .us-vfab-interactive-map-content-wrapper {
+    width: 40% !important;
+  }
+
+  .us-vfab-content-us-item {
+    margin: 90px 20px 100px !important;
+    height: calc(100vh - 160px) !important;
+  }
+}
+
 /* Desktop and up - 1024px */
 @media (min-width: 1024px) {
   /* Desktop: 5-item layout */

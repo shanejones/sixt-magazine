@@ -261,7 +261,7 @@ $uk_slider_items = [
     </div>
     <div class="us-vfab-content-uk" id="vfab-uk-items" style="position: relative;">
       <div class="us-vfab-content-uk-inner">
-        <div id="uk-scroll-anchor" style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background-color: red;"></div>
+        <div id="uk-scroll-anchor" style="position: absolute; top: 0; right: 0; width: 1px; height: 1px"></div>
         <h3>The most iconic bridge views in the UK</h3>
         
         <div class="uk-slider-container">
