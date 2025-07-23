@@ -50,57 +50,10 @@
   border-radius: 6px;
   font-size: 14px;
   font-weight: 400;
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  width: 26px;
+  height: 26px;
+}
+
 .us-vfab-content-side-scroll-wrapper {
 position: relative;
 height: 100vh;
@@ -495,44 +448,43 @@ background-size: 200px;
 
 /* UK Slider Mobile Responsive */
 @media (max-width: 768px) {
-.us-vfab-content-uk {
-  padding: 20px 15px;
-}
+  .us-vfab-content-uk {
+    padding: 20px 15px;
+  }
 
-.us-vfab-content-uk h3 {
-  font-size: 24px;
-  margin-bottom: 30px;
-}
+  .us-vfab-content-uk h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
 
-.uk-slider-container {
-  padding: 0 10px;
-  gap: 0px;
-}
+  .uk-slider-container {
+    padding: 0 10px;
+    gap: 0px;
+  }
 
-.uk-slider-nav {
-  width: 40px;
-  height: 40px;
-}
+  .uk-slider-nav {
+    width: 40px;
+    height: 40px;
+  }
 
-.uk-slider-nav:hover {
-  background: #333333;
-}
+  .uk-slider-nav:hover {
+    background: #333333;
+  }
 
-.uk-slider-chevron {
-  width: 10px;
-  height: 10px;
-  fill: none;
-  stroke: white;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+  .uk-slider-chevron {
+    width: 10px;
+    height: 10px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 
-.uk-slider-title {
-  font-size: 20px;
-}
-}
-}
+  .uk-slider-title {
+    font-size: 20px;
+  }
+  }
 
 .us-vfab-map-marker.active {
   background-color: black;
