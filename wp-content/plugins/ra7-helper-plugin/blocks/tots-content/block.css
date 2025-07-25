@@ -1,0 +1,63 @@
+.ras-tots-content-wrapper {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "image"
+    "content";
+  max-width: 1320px;
+  margin: auto;
+  padding: 40px 20px;
+  gap: 24px;
+}
+
+.ras-tots-content-title {
+  grid-area: title;
+  font-size: 22px;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.ras-tots-content {
+  grid-area: content;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ras-tots-content a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.ras-tots-content-image {
+  grid-area: image;
+  width: 100%;
+}
+
+.ras-tots-content-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .ras-tots-content-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "image title"
+      "image content";
+    padding: 80px 20px;
+    gap: 40px;
+  }
+
+  .ras-tots-content-title {
+    font-size: 30px;
+    display: flex;
+    align-items: flex-end;
+    min-height: 100%;
+  }
+
+  .ras-tots-content {
+    font-size: 18px;
+  }
+}
