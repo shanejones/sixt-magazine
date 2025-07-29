@@ -1,0 +1,62 @@
+.ras-tots-slider-item {
+    position: relative;
+    list-style: none;
+}
+
+.ras-tots-slider-item-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.ras-tots-slider-item-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ras-tots-water-image {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    z-index: 3;
+    overflow: hidden;
+}
+
+.ras-tots-water-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.ras-tots-slider-index {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #222;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+    z-index: 2;
+}

@@ -1,4 +1,4 @@
-.tots-logo-block {
+.ras-tots-logo-block {
   position: relative;
   z-index: 2;
   max-width: 1920px;
@@ -6,7 +6,7 @@
 }
 
 
-.tots-header {
+.ras-tots-header {
   position: relative;
   width: 100%;
   min-height: 900px;
@@ -17,7 +17,7 @@
   margin: 0 auto;
 }
 
-.tots-header-video-container {
+.ras-tots-header-video-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,13 +27,13 @@
   overflow: hidden;
 }
 
-.tots-header-video-container video {
+.ras-tots-header-video-container video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.tots-header-content-wrapper {
+.ras-tots-header-content-wrapper {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -42,7 +42,7 @@
   display: flex;
 }
 
-.tots-header-content-wrapper-inner {
+.ras-tots-header-content-wrapper-inner {
   border: 5px solid white;
   width: 100%;
   height: 100%;
@@ -51,7 +51,7 @@
   border-radius: 15px;
 }
 
-.tots-header-content {
+.ras-tots-header-content {
   width: 100%;
   max-width: 600px;
   padding: 15px 15px 25px 15px;
@@ -62,7 +62,7 @@
   justify-content: space-between;
 }
 
-.tots-header h1 {
+.ras-tots-header h1 {
   font-size: clamp(70px, 12vw, 230px);
   margin-bottom: 10px;
   font-weight: bold;
@@ -71,13 +71,13 @@
   color: white;
 }
 
-.tots-header p {
+.ras-tots-header p {
   font-size: 20px;
   font-weight: medium;
   color: white;
 }
 
-.tots-header-link {
+.ras-tots-header-link {
   display: inline-flex;
   gap: 10px;
   align-items: center;
@@ -93,28 +93,28 @@
   letter-spacing: 0.05em;
 }
 
-.tots-header-link:hover {
+.ras-tots-header-link:hover {
   background-color: #E55400;
   color: white;
 }
 
 /* Mobile specific styles */
 @media (max-width: 640px) {
-  .tots-logo-block {
+  .ras-tots-logo-block {
     padding: 15px 20px;
   }
   
-  .tots-header {
+  .ras-tots-header {
     min-height: 500px;
     padding-bottom: 177.78%;
   }
   
-  .tots-header-video-container {
+  .ras-tots-header-video-container {
     display: flex;
     justify-content: center;
   }
   
-  .tots-header-content-wrapper {
+  .ras-tots-header-content-wrapper {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -125,48 +125,48 @@
 
 /* Small mobile and up */
 @media (min-width: 480px) {
-  .tots-header-content {
+  .ras-tots-header-content {
     height: 50%;
   }
 
-  .tots-header-content {
+  .ras-tots-header-content {
     height: 45%;
   }
 }
 
 /* Mobile typography */
 @media (min-width: 540px) {
-  .tots-header h1 {
+  .ras-tots-header h1 {
     max-width: 300px;
   }
 }
 
 /* Tablet and up */
 @media (min-width: 640px) {
-  .tots-logo-block {
+  .ras-tots-logo-block {
     padding: 30px 0 0 40px ;
   }
 
-  .tots-header-video-container .desktop-video {
+  .ras-tots-header-video-container .desktop-video {
     display: block;
   }
 
-  .tots-header-content-wrapper-inner {
+  .ras-tots-header-content-wrapper-inner {
     border: 8px solid white;
   }
   
-  .tots-header {
+  .ras-tots-header {
     flex-direction: row;
   }
 
-  .tots-header-content {
+  .ras-tots-header-content {
     height: 100%;
     max-width: 70%;
     justify-content: flex-end;
     gap: 20px;
   }
   
-  .tots-header-content-wrapper {
+  .ras-tots-header-content-wrapper {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -174,15 +174,15 @@
     padding: 40px;
   }
 
-  .tots-header h1 {
+  .ras-tots-header h1 {
     max-width: none;
   }
 
-  .tots-header p {
+  .ras-tots-header p {
     font-size: 28px;
   }
 
-  .tots-header-link {
+  .ras-tots-header-link {
     position: absolute;
     right: 80px;
   }
@@ -190,45 +190,45 @@
 
 /* Medium screens */
 @media (min-width: 800px) {
-  .tots-header p {
+  .ras-tots-header p {
     font-size: 35px;
   }
 }
 
 /* Desktop and up */
 @media (min-width: 1024px) {
-  .tots-header-content-wrapper-inner {
+  .ras-tots-header-content-wrapper-inner {
     border: 15px solid white;
   }
 }
 
 @media (min-width: 1200px) {
-  .tots-header {
+  .ras-tots-header {
     max-height: 800px;
   }
   
-  .tots-header-video-container video {
+  .ras-tots-header-video-container video {
     max-width: 1920px;
     margin: 0 auto;
   }
 }
 
 @media (min-width: 1500px) {
-  .tots-header h1 {
+  .ras-tots-header h1 {
     margin-top: 70px;
   }
 }
 
 /* Video aspect ratio maintenance */
 @media (max-width: 1920px) and (min-width: 640px) {
-  .tots-header {
+  .ras-tots-header {
     height: 90vh;
     min-height: 90vh;
   }
 }
 
 @media (max-width: 1200px) and (min-width: 640px) {
-  .tots-header {
+  .ras-tots-header {
     min-height: 500px;
   }
 }

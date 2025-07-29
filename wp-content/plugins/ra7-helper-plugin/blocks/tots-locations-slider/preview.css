@@ -1,0 +1,31 @@
+.preview-wrapper {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.preview-inner {
+  margin-bottom: 15px;
+}
+
+.preview-inner p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.preview-inner strong {
+  font-weight: bold;
+  color: #333;
+}   
+
+.ras-qc-content-black .preview-inner h2,
+  .ras-qc-content-black .preview-inner p {
+  color: #333 !important;
+}
+
+.ras-qc-content-black .gcb-editor-form {
+  background-color: #f5f5f5 !important;
+  color: #333 !important
+}
