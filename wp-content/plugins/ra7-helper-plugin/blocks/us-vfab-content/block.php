@@ -4,7 +4,7 @@ wp_enqueue_script('gsap-js', plugins_url('../scripts/scrollmagic/gsap.min.js', _
 wp_enqueue_script('scrollmagic-js', plugins_url('../scripts/scrollmagic/ScrollMagic.min.js', __DIR__), array(), '2.0.8', true);
 wp_enqueue_script('scrollmagic-gsap-js', plugins_url('../scripts/scrollmagic/animation.gsap.min.js', __DIR__), array('scrollmagic-js', 'gsap-js'), '2.0.8', true);
 
-wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array('jquery', 'scrollmagic-js', 'gsap-js'), '2.0.0', true);
+wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array('jquery', 'scrollmagic-js', 'gsap-js'), '2.1.0', true);
 
 
 

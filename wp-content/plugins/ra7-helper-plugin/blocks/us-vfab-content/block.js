@@ -14,63 +14,138 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    const controller = new ScrollMagic.Controller();
-
-    const slides = slidesContainer.children;
-    let totalWidth = 0;
+    // Initialize UI components that don't depend on image loading
+    initUKSlider();
+    initUSBridgeToggles();
     
-    for (let i = 0; i < slides.length; i++) {
-        totalWidth += slides[i].offsetWidth;
+    // Wait for images to load before initializing ScrollMagic
+    waitForImagesAndInitialize();
+});
+
+function waitForImagesAndInitialize() {
+    const pinContainer = document.getElementById('us-vfab-content-pin-container');
+    const slidesContainer = document.getElementById('us-vfab-content-slides');
+    
+    // Find all images within the slides container
+    const images = Array.from(slidesContainer.querySelectorAll('img'));
+    let loadedImages = 0;
+    let totalImages = images.length;
+    
+    console.log(`Found ${totalImages} images to load`);
+    
+    function checkImageLoad() {
+        loadedImages++;
+        console.log(`Loaded ${loadedImages}/${totalImages} images`);
+        
+        if (loadedImages >= totalImages) {
+            // Small delay to ensure layout is complete
+            setTimeout(initializeScrollMagic, 100);
+        }
     }
-
-    let horizontalScrollDistance = totalWidth - window.innerWidth;
     
-    console.log(`Total slides width: ${totalWidth}, Window width: ${window.innerWidth}, Horizontal scroll distance: ${horizontalScrollDistance}`);
-    console.log(`Slides: intro(${slides[0].offsetWidth}px), us(${slides[1].offsetWidth}px), uk(${slides[2].offsetWidth}px)`);
+    function initializeScrollMagic() {
+        console.log('Initializing ScrollMagic after images loaded');
+        
+        const controller = new ScrollMagic.Controller();
+        const slides = slidesContainer.children;
+        let totalWidth = 0;
+        
+        // Calculate total width now that images are loaded
+        for (let i = 0; i < slides.length; i++) {
+            totalWidth += slides[i].offsetWidth;
+        }
 
-    gsap.set(slidesContainer, { x: 0 });
+        let horizontalScrollDistance = totalWidth - window.innerWidth;
+        
+        console.log(`Total slides width: ${totalWidth}, Window width: ${window.innerWidth}, Horizontal scroll distance: ${horizontalScrollDistance}`);
+        console.log(`Slides: intro(${slides[0].offsetWidth}px), us(${slides[1].offsetWidth}px), uk(${slides[2].offsetWidth}px)`);
 
-    const horizontalScrollTween = gsap.to(slidesContainer, {
-        x: -horizontalScrollDistance,
-        ease: "none"
+        if (horizontalScrollDistance <= 0) {
+            console.warn('Invalid scroll distance calculated, skipping ScrollMagic initialization');
+            return;
+        }
+
+        gsap.set(slidesContainer, { x: 0 });
+
+        const horizontalScrollTween = gsap.to(slidesContainer, {
+            x: -horizontalScrollDistance,
+            ease: "none"
+        });
+
+        const pinScene = new ScrollMagic.Scene({
+            triggerElement: pinContainer,
+            triggerHook: 0,
+            duration: horizontalScrollDistance * 2,
+        })
+        .setPin(pinContainer)
+        .setTween(horizontalScrollTween)
+        .addTo(controller);
+
+        pinScene.on("enter", function () {
+            console.log("ScrollMagic: Entered horizontal scroll section");
+        });
+
+        pinScene.on("leave", function () {
+            console.log("ScrollMagic: Left horizontal scroll section");
+        });
+
+        // Setup resize handler with proper recalculation
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                totalWidth = 0;
+                for (let i = 0; i < slides.length; i++) {
+                    totalWidth += slides[i].offsetWidth;
+                }
+                
+                horizontalScrollDistance = totalWidth - window.innerWidth;
+                
+                if (horizontalScrollDistance > 0) {
+                    horizontalScrollTween.vars.x = -horizontalScrollDistance;
+                    pinScene.duration(horizontalScrollDistance * 2);
+                    pinScene.refresh();
+                    
+                    console.log('ScrollMagic: Resized and refreshed');
+                }
+            }, 250);
+        });
+
+        // Setup click handlers for navigation buttons
+        setupNavigationButtons(pinContainer, horizontalScrollDistance);
+    }
+    
+    // If no images found, initialize immediately
+    if (totalImages === 0) {
+        console.log('No images found, initializing ScrollMagic immediately');
+        setTimeout(initializeScrollMagic, 100);
+        return;
+    }
+    
+    // Set up image load listeners
+    images.forEach(img => {
+        if (img.complete) {
+            // Image already loaded
+            checkImageLoad();
+        } else {
+            img.addEventListener('load', checkImageLoad);
+            img.addEventListener('error', function() {
+                console.warn('Image failed to load:', img.src);
+                checkImageLoad(); // Continue anyway
+            });
+        }
     });
+    
+    // Fallback: Initialize after 3 seconds regardless of image loading status
+    setTimeout(function() {
+        if (loadedImages < totalImages) {
+            console.warn(`Timeout: Only ${loadedImages}/${totalImages} images loaded, initializing anyway`);
+            initializeScrollMagic();
+        }
+    }, 3000);
+}
 
-    const pinScene = new ScrollMagic.Scene({
-        triggerElement: pinContainer,
-        triggerHook: 0,
-        duration: horizontalScrollDistance * 2,
-    })
-    .setPin(pinContainer)
-    .setTween(horizontalScrollTween)
-    .addTo(controller);
-
-    pinScene.on("enter", function () {
-        console.log("ScrollMagic: Entered horizontal scroll section");
-    });
-
-    pinScene.on("leave", function () {
-        console.log("ScrollMagic: Left horizontal scroll section");
-    });
-
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            totalWidth = 0;
-            for (let i = 0; i < slides.length; i++) {
-                totalWidth += slides[i].offsetWidth;
-            }
-            
-            horizontalScrollDistance = totalWidth - window.innerWidth;
-            
-            horizontalScrollTween.vars.x = -horizontalScrollDistance;
-            pinScene.duration(horizontalScrollDistance * 2);
-            pinScene.refresh();
-            
-            console.log('ScrollMagic: Resized and refreshed');
-        }, 250);
-    });
-
+function setupNavigationButtons(pinContainer, horizontalScrollDistance) {
     document.addEventListener('click', function(e) {
         e.preventDefault();
         
@@ -124,11 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-
-    initUKSlider();
-    
-    initUSBridgeToggles();
-});
+}
 
 function initUKSlider() {
     const sliderTrack = document.getElementById('uk-bridges-slider');
