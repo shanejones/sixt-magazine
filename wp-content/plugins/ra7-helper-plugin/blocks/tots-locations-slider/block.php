@@ -20,7 +20,6 @@
 
 <div class="ras-tots-slider-content">
     <div class="ras-tots-slider-content-inner">
-        <p class="ras-tots-slide-number">#1</p>
         <h4 class="ras-tots-slider-location"></h4>
         <div class="ras-tots-slider-measured-at"></div>
     </div>
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextButton = document.querySelector('.ras-tots-slider-next');
     const contentLocation = document.querySelector('.ras-tots-slider-location');
     const contentMeasuredAt = document.querySelector('.ras-tots-slider-measured-at');
-    const slideNumber = document.querySelector('.ras-tots-slide-number');
 
     if (!sliderTrack) return;
 
@@ -82,10 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateContent() {
         const activeSlide = allSlides[currentIndex];
-        if (activeSlide && contentLocation && contentMeasuredAt && slideNumber) {
+        if (activeSlide && contentLocation && contentMeasuredAt) {
             contentLocation.textContent = activeSlide.location || '';
             contentMeasuredAt.textContent = activeSlide.measuredAt || '';
-            slideNumber.textContent = `#${currentIndex + 1}`;
+            
         }
     }
 

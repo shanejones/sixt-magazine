@@ -20,20 +20,24 @@
 
 .ras-tots-water-image {
     position: absolute;
+    display: none;
     left: 50%;
-    bottom: 50px;
+    bottom: 30px;
     transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     background: #fff;
     border: 2px solid #fff;
-    border-radius: 8px;
-    display: flex;
+    border-radius: 16px;
     align-items: center;
     justify-content: center;
     box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-    z-index: 3;
+    z-index: 1;
     overflow: hidden;
+}
+
+.ras-tots-slider-active .ras-tots-water-image {
+    display: flex;
 }
 
 .ras-tots-water-image img {
@@ -59,4 +63,18 @@
     color: #222;
     box-shadow: 0 1px 4px rgba(0,0,0,0.10);
     z-index: 2;
+}
+
+@media (min-width: 768px) {
+    .ras-tots-water-image {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ras-tots-water-image {
+        width: 180px;
+        height: 180px;
+    }
 }
