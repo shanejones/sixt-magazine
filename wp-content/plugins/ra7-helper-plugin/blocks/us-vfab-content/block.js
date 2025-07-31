@@ -26,166 +26,203 @@ function waitForImagesAndInitialize() {
     const pinContainer = document.getElementById('us-vfab-content-pin-container');
     const slidesContainer = document.getElementById('us-vfab-content-slides');
     
-    // Find all images within the slides container
-    const images = Array.from(slidesContainer.querySelectorAll('img'));
-    let loadedImages = 0;
-    let totalImages = images.length;
+    console.log('Using simple anchor-based approach - no need to wait for images!');
     
-    console.log(`Found ${totalImages} images to load`);
+    // Longer delay to ensure layout is stable, especially for production
+    setTimeout(() => {
+        checkLayoutAndInitialize();
+    }, 500);
+}
+
+function checkLayoutAndInitialize() {
+    const pinContainer = document.getElementById('us-vfab-content-pin-container');
+    const slidesContainer = document.getElementById('us-vfab-content-slides');
+    const ukScrollAnchor = document.getElementById('uk-scroll-anchor');
     
-    function checkImageLoad() {
-        loadedImages++;
-        console.log(`Loaded ${loadedImages}/${totalImages} images`);
-        
-        if (loadedImages >= totalImages) {
-            // Small delay to ensure layout is complete
-            setTimeout(initializeScrollMagic, 100);
-        }
-    }
-    
-    function initializeScrollMagic() {
-        console.log('Initializing ScrollMagic after images loaded');
-        
-        const controller = new ScrollMagic.Controller();
-        const slides = slidesContainer.children;
-        let totalWidth = 0;
-        
-        // Calculate total width now that images are loaded
-        for (let i = 0; i < slides.length; i++) {
-            totalWidth += slides[i].offsetWidth;
-        }
-
-        let horizontalScrollDistance = totalWidth - window.innerWidth;
-        
-        console.log(`Total slides width: ${totalWidth}, Window width: ${window.innerWidth}, Horizontal scroll distance: ${horizontalScrollDistance}`);
-        console.log(`Slides: intro(${slides[0].offsetWidth}px), us(${slides[1].offsetWidth}px), uk(${slides[2].offsetWidth}px)`);
-
-        if (horizontalScrollDistance <= 0) {
-            console.warn('Invalid scroll distance calculated, skipping ScrollMagic initialization');
-            return;
-        }
-
-        gsap.set(slidesContainer, { x: 0 });
-
-        const horizontalScrollTween = gsap.to(slidesContainer, {
-            x: -horizontalScrollDistance,
-            ease: "none"
-        });
-
-        const pinScene = new ScrollMagic.Scene({
-            triggerElement: pinContainer,
-            triggerHook: 0,
-            duration: horizontalScrollDistance * 2,
-        })
-        .setPin(pinContainer)
-        .setTween(horizontalScrollTween)
-        .addTo(controller);
-
-        pinScene.on("enter", function () {
-            console.log("ScrollMagic: Entered horizontal scroll section");
-        });
-
-        pinScene.on("leave", function () {
-            console.log("ScrollMagic: Left horizontal scroll section");
-        });
-
-        // Setup resize handler with proper recalculation
-        let resizeTimeout;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(function() {
-                totalWidth = 0;
-                for (let i = 0; i < slides.length; i++) {
-                    totalWidth += slides[i].offsetWidth;
-                }
-                
-                horizontalScrollDistance = totalWidth - window.innerWidth;
-                
-                if (horizontalScrollDistance > 0) {
-                    horizontalScrollTween.vars.x = -horizontalScrollDistance;
-                    pinScene.duration(horizontalScrollDistance * 2);
-                    pinScene.refresh();
-                    
-                    console.log('ScrollMagic: Resized and refreshed');
-                }
-            }, 250);
-        });
-
-        // Setup click handlers for navigation buttons
-        setupNavigationButtons(pinContainer, horizontalScrollDistance);
-    }
-    
-    // If no images found, initialize immediately
-    if (totalImages === 0) {
-        console.log('No images found, initializing ScrollMagic immediately');
-        setTimeout(initializeScrollMagic, 100);
+    if (!pinContainer || !slidesContainer || !ukScrollAnchor) {
+        console.error('Required containers not found');
         return;
     }
     
-    // Set up image load listeners
-    images.forEach(img => {
-        if (img.complete) {
-            // Image already loaded
-            checkImageLoad();
-        } else {
-            img.addEventListener('load', checkImageLoad);
-            img.addEventListener('error', function() {
-                console.warn('Image failed to load:', img.src);
-                checkImageLoad(); // Continue anyway
-            });
-        }
-    });
+    // Set road width to match US section container width
+    const usSection = document.getElementById('vfab-us-items');
+    const roadElement = document.querySelector('.us-vfab-content-road');
+    if (usSection && roadElement) {
+        const usSectionWidth = usSection.offsetWidth;
+        roadElement.style.width = usSectionWidth + 'px';
+        console.log(`Set road width to match US section: ${usSectionWidth}px`);
+    }
     
-    // Fallback: Initialize after 3 seconds regardless of image loading status
-    setTimeout(function() {
-        if (loadedImages < totalImages) {
-            console.warn(`Timeout: Only ${loadedImages}/${totalImages} images loaded, initializing anyway`);
-            initializeScrollMagic();
-        }
-    }, 3000);
+    console.log('=== CONTAINER-BASED APPROACH ===');
+    console.log('Using actual DOM container width instead of calculations');
+    
+    // Fixed width calculations based on CSS breakpoints
+    const viewportWidth = window.innerWidth;
+    const isDesktop = viewportWidth >= 480;
+    const usItemWidth = isDesktop ? 400 : 360;
+    const cliffWidth = 500;
+    
+    // Layout breakdown:
+    // 1. Intro section: 100vw
+    // 2. Left cliffs: 500px  
+    // 3. US intro item: 400px/360px
+    // 4. 20 US slider items: 20 × (400px/360px)
+    // 5. Right cliffs: 500px
+    // 6. UK section: 100vw
+    
+    const totalWidth = viewportWidth + cliffWidth + usItemWidth + (20 * usItemWidth) + cliffWidth + viewportWidth;
+    
+    // Add half the viewport width to account for the consistent shortfall
+    const additionalScroll = viewportWidth / 2;
+    const maxHorizontalScroll = (totalWidth - viewportWidth) + additionalScroll;
+    
+    console.log(`DEBUG: Adding half viewport (${additionalScroll}px) to maxHorizontalScroll`);
+    
+    // UK section starts at this position  
+    const ukSectionStart = viewportWidth + cliffWidth + usItemWidth + (20 * usItemWidth) + cliffWidth;
+    
+    // We want to stop when UK section's RIGHT EDGE just comes into view (at right edge of viewport)
+    // UK section right edge = ukSectionStart + viewportWidth
+    const ukSectionRightEdge = ukSectionStart + viewportWidth;
+    const ukAnchorPosition = ukSectionRightEdge;
+    
+    console.log(`Viewport: ${viewportWidth}px, US Item Width: ${usItemWidth}px`);
+    console.log(`Total width: ${totalWidth}px, Max horizontal scroll: ${maxHorizontalScroll}px`);
+    console.log(`UK section right edge at: ${ukAnchorPosition}px`);
+    console.log(`Expected: Stop when UK section right edge hits right side of viewport`);
+    console.log('=== END CALCULATION ===');
+    
+    initializeScrollMagic(pinContainer, slidesContainer, ukScrollAnchor, maxHorizontalScroll, ukAnchorPosition);
 }
 
-function setupNavigationButtons(pinContainer, horizontalScrollDistance) {
+function initializeScrollMagic(pinContainer, slidesContainer, ukScrollAnchor, maxHorizontalScroll, ukAnchorPosition) {
+    console.log('Initializing ScrollMagic with container-based approach');
+    
+    const controller = new ScrollMagic.Controller();
+    
+    // Get the actual total width of the slides container
+    const actualTotalWidth = slidesContainer.scrollWidth;
+    const viewportWidth = window.innerWidth;
+    const actualMaxHorizontalScroll = actualTotalWidth - viewportWidth;
+    
+    console.log(`PROD: Width=${actualTotalWidth}, Scroll=${actualMaxHorizontalScroll}, Duration=${actualMaxHorizontalScroll}`);
+    
+    gsap.set(slidesContainer, { x: 0 });
+
+    const horizontalScrollTween = gsap.to(slidesContainer, {
+        x: -actualMaxHorizontalScroll,
+        ease: "none"
+    });
+
+    const pinScene = new ScrollMagic.Scene({
+        triggerElement: pinContainer,
+        triggerHook: 0,
+        duration: actualMaxHorizontalScroll
+    })
+    .setPin(pinContainer)
+    .setTween(horizontalScrollTween)
+    .addTo(controller);
+
+    pinScene.on("enter", function () {
+        console.log("ScrollMagic: Started horizontal scrolling");
+    });
+
+    pinScene.on("leave", function () {
+        const ukSection = document.getElementById('vfab-uk-items');
+        const ukSectionRect = ukSection.getBoundingClientRect();
+        console.log(`PROD: UK at ${ukSectionRect.left}px (should be 0)`);
+    });
+
+    // Progress tracking with detailed logging every 100px
+    let lastLoggedDistance = 0;
+    pinScene.on("progress", function (event) {
+        const currentDistance = Math.round(event.progress * actualMaxHorizontalScroll);
+        
+        // Log every 100px of progress
+        if (currentDistance >= lastLoggedDistance + 100) {
+            const slidesContainer = document.getElementById('us-vfab-content-slides');
+            const currentX = gsap.getProperty(slidesContainer, "x");
+            console.log(`Progress: ${Math.round(event.progress * 100)}% | Distance: ${currentDistance}px | Slides X: ${Math.round(currentX)}px`);
+            lastLoggedDistance = Math.floor(currentDistance / 100) * 100;
+        }
+        
+        // Final progress tracking
+        if (event.progress > 0.95) {
+            console.log(`Almost done: ${Math.round(event.progress * 100)}% - UK section about to appear`);
+        }
+    });
+
+    // Handle resize by refreshing the scene
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            console.log('Refreshing scene after resize');
+            pinScene.refresh();
+        }, 250);
+    });
+
+    // Setup click handlers for navigation buttons
+    setupNavigationButtons(pinContainer, actualMaxHorizontalScroll, actualMaxHorizontalScroll);
+}
+
+function setupNavigationButtons(pinContainer, horizontalScrollDistance, sceneDuration) {
     document.addEventListener('click', function(e) {
-        e.preventDefault();
+        if (e.target.id === 'scroll-us' || e.target.id === 'scroll-uk' || e.target.id === 'scroll-global') {
+            e.preventDefault();
+        }
         
         const pinContainerTop = pinContainer.offsetTop;
-        const sceneDuration = horizontalScrollDistance * 2;
+        const pinContainerRect = pinContainer.getBoundingClientRect();
+        const pinContainerActualTop = pinContainerRect.top + window.pageYOffset;
+        
+        console.log(`=== PIN CONTAINER DEBUG ===`);
+        console.log(`pinContainer.offsetTop: ${pinContainerTop}px`);
+        console.log(`pinContainer getBoundingClientRect().top: ${pinContainerRect.top}px`);
+        console.log(`Actual pin container top position: ${pinContainerActualTop}px`);
+        console.log(`=== END PIN CONTAINER DEBUG ===`);
         
         if (e.target.id === 'scroll-us') {
-            const introSection = document.querySelector('.us-vfab-content-intro');
-            const usSection = document.querySelector('.us-vfab-content-us');
-            if (introSection && usSection) {
-                const usOffset = introSection.offsetWidth;
-                const scrollProgress = usOffset / horizontalScrollDistance;
-                const targetScroll = pinContainerTop + (sceneDuration * scrollProgress);
-                window.scrollTo({
-                    top: targetScroll,
-                    behavior: 'smooth'
-                });
-                console.log('Scrolling to US section');
-            }
+            // Simple: scroll exactly 100vw in the ScrollMagic scene
+            const viewportWidth = window.innerWidth;
+            const currentScrollY = window.pageYOffset || window.scrollY;
+            
+            // Calculate how far into the scene we need to scroll for 100vw horizontal movement
+            const sceneProgress = (viewportWidth / horizontalScrollDistance) * sceneDuration;
+            const targetScroll = pinContainerActualTop + sceneProgress;
+            
+            console.log(`=== US BUTTON DEBUG ===`);
+            console.log(`Current scroll position: ${currentScrollY}px`);
+            console.log(`Pin container top: ${pinContainerTop}px`);
+            console.log(`Viewport width (100vw): ${viewportWidth}px`);
+            console.log(`Horizontal scroll distance: ${horizontalScrollDistance}px`);
+            console.log(`Scene duration: ${sceneDuration}px`);
+            console.log(`Scene progress needed: ${sceneProgress}px`);
+            console.log(`Final target scroll: ${targetScroll}px`);
+            console.log(`=== END DEBUG ===`);
+            
+            window.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+            });
             
         } else if (e.target.id === 'scroll-uk') {
-            const anchor = document.getElementById('uk-scroll-anchor');
-            const ukSection = document.getElementById('vfab-uk-items');
-            if (anchor && ukSection) {
-                // Calculate the anchor's position relative to the slides container
-                const anchorPositionInSlides = ukSection.offsetLeft + anchor.offsetLeft + anchor.offsetWidth;
-                // We want to scroll until the anchor is at the right edge of the viewport
-                const targetX = anchorPositionInSlides - window.innerWidth;
-                
-                // Convert horizontal position to scroll progress
-                const scrollProgress = targetX / horizontalScrollDistance;
-                const targetScroll = pinContainerTop + (sceneDuration * scrollProgress);
-
-                window.scrollTo({
-                    top: targetScroll,
-                    behavior: 'smooth'
-                });
-                console.log(`Scrolling to UK anchor. AnchorPos: ${anchorPositionInSlides}, TargetX: ${targetX}, ScrollProgress: ${scrollProgress}, TargetScroll: ${targetScroll}`);
-            }
+            // Use ScrollMagic to scroll to 100% of scene
+            const targetScroll = pinContainerActualTop + sceneDuration;
+            
+            console.log(`=== UK BUTTON DEBUG ===`);
+            console.log(`Pin container actual top: ${pinContainerActualTop}px`);
+            console.log(`Scene duration: ${sceneDuration}px`);
+            console.log(`Final target scroll (100%): ${targetScroll}px`);
+            console.log(`=== END UK DEBUG ===`);
+            
+            window.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+            });
+            
         } else if (e.target.id === 'scroll-global') {
+            // Scroll to global section (separate block, below the horizontal scroll)
             const globalSection = document.getElementById('vfab-global-items');
             if (globalSection) {
                 const targetScroll = globalSection.offsetTop - 100;
@@ -195,7 +232,7 @@ function setupNavigationButtons(pinContainer, horizontalScrollDistance) {
                 });
                 console.log('Scrolling to Global section');
             } else {
-                console.log('Global section not found');
+                console.log('Global section not found - it may be in another block');
             }
         }
     });
@@ -209,12 +246,36 @@ function initUKSlider() {
     const contentLocation = document.querySelector('.uk-slider-location');
     const contentDescription = document.querySelector('.uk-slider-description');
 
-    const allSlides = Array.from(sliderTrack.querySelectorAll('li')).map(slide => ({
-        title: slide.dataset.title,
-        location: slide.dataset.location,
-        description: slide.dataset.description,
-        image: slide.querySelector('img').src
-    }));
+    if (!sliderTrack || !prevButton || !nextButton) {
+        console.log('UK slider elements not found');
+        return;
+    }
+
+    // Read data from existing HTML slides
+    const allSlides = Array.from(sliderTrack.querySelectorAll('li')).map(slide => {
+        const img = slide.querySelector('img');
+        let imageSrc = '';
+        
+        if (img) {
+            // Try different ways to get the real image source
+            imageSrc = img.getAttribute('data-src') || // Common lazy loading attribute
+                      img.getAttribute('data-lazy-src') || // Another common lazy loading attribute  
+                      img.getAttribute('src') || // Original src attribute
+                      img.src; // Fallback to computed src
+        }
+        
+        return {
+            title: slide.dataset.title,
+            location: slide.dataset.location,
+            description: slide.dataset.description,
+            image: imageSrc
+        };
+    });
+    
+    if (allSlides.length === 0) {
+        console.warn('UK slider has no slides.');
+        return;
+    }
     
     let currentIndex = 0;
     const totalSlides = allSlides.length;
@@ -277,9 +338,9 @@ function initUKSlider() {
         items.forEach((item, i) => {
             const li = document.createElement('li');
             li.className = classes[i];
-            li.innerHTML = `<div class=\"uk-slider-item-inner\">
-                <img src=\"${item.image}\" alt=\"${item.title}\">
-                <span class=\"uk-slider-index\">${indices[i] + 1}</span>
+            li.innerHTML = `<div class="uk-slider-item-inner">
+                <img src="${item.image}" alt="${item.title}" loading="lazy">
+                <span class="uk-slider-index">${indices[i] + 1}</span>
             </div>`;
             li.setAttribute('data-title', item.title);
             li.setAttribute('data-location', item.location);
@@ -318,6 +379,8 @@ function initUKSlider() {
     window.addEventListener('resize', () => renderSlider());
 
     renderSlider();
+    
+    console.log(`UK slider initialized with ${totalSlides} slides from existing HTML.`);
 }
 
 function initUSBridgeToggles() {

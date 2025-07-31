@@ -102,7 +102,7 @@
 }
 
 .us-vfab-content-us-item {
-  width: 90vw;
+  width: 360px;
   height: calc(100vh - 100px);
   flex-shrink: 0;
   display: flex;
@@ -151,7 +151,7 @@
 }
 
 .us-vfab-content-us-item-content h2 {
-  font-size: 0px;
+  font-size: 40px;
   color: white !important;
 }
 
@@ -170,7 +170,7 @@
 
 }
 .us-vfab-content-cliffs {
-  width: 100%;
+  width: 500px;
   height: 100%;
   aspect-ratio: 5/11;
   background-size: cover;
@@ -181,9 +181,11 @@
 .us-vfab-content-road {
   position: absolute;
   bottom: 50px;
-  width: 5000%;
+  width: auto; /* Will be set dynamically by JavaScript */
   height: 157px;
   background-size: 250px;
+  pointer-events: none; /* Ensure it doesn't interfere with scroll calculations */
+  z-index: 1; /* Keep it behind other content */
 }
 
 @media(min-width: 768px){

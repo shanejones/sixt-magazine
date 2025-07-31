@@ -4,8 +4,7 @@ wp_enqueue_script('gsap-js', plugins_url('../scripts/scrollmagic/gsap.min.js', _
 wp_enqueue_script('scrollmagic-js', plugins_url('../scripts/scrollmagic/ScrollMagic.min.js', __DIR__), array(), '2.0.8', true);
 wp_enqueue_script('scrollmagic-gsap-js', plugins_url('../scripts/scrollmagic/animation.gsap.min.js', __DIR__), array('scrollmagic-js', 'gsap-js'), '2.0.8', true);
 
-wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array('jquery', 'scrollmagic-js', 'gsap-js'), '2.1.0', true);
-
+wp_enqueue_script('us-vfab-content-js', plugins_url('block.js', __FILE__), array('jquery', 'scrollmagic-js', 'gsap-js'), RAS_HP_VERSION, true);
 
 
 $us_slider_items = [
@@ -261,7 +260,7 @@ $uk_slider_items = [
     </div>
     <div class="us-vfab-content-uk" id="vfab-uk-items" style="position: relative;">
       <div class="us-vfab-content-uk-inner">
-        <div id="uk-scroll-anchor" style="position: absolute; top: 0; right: 0; width: 1px; height: 1px"></div>
+        <div id="uk-scroll-anchor" style="position: absolute; top: 0; right: 0; width: 5px; height: 5px; pointer-events: none;" ></div>
         <h3>The most iconic bridge views in the UK</h3>
         
         <div class="uk-slider-container">

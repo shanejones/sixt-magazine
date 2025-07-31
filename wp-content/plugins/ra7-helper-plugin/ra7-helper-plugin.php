@@ -7,7 +7,7 @@
  * Requires at least: 5.9
  * Tested up to:      6.1
  * Requires PHP:      7.0
- * Version:           100.0.16    
+ * Version:           100.0.38
  * Author:            Rise at Seven
  * Author URI:        https://shanejones.co.uk
  * Text Domain:       rise-at-seven-blocks
@@ -16,9 +16,8 @@
  */
 
 
-
  // excessive version number to always override the gravity custom blocks version
-define('RAS_HP_VERSION', '100.0.16');
+define('RAS_HP_VERSION', '100.0.38');
 
 /**
  * Exit if accessed directly.
@@ -72,32 +71,51 @@ add_filter('theme_post_templates', 'ras_hp_add_my_custom_templates');
 /**
  * Use the below if we're having caching issues
  */
-function ras_override_style_import()
+
+
+function ras_override_block_scripts()
 {
-  $post_id = get_the_ID();
+    global $wp_scripts, $wp_styles;
 
-  $blocks = array_map(function($dir) {
-    return basename($dir);
-  }, glob(__DIR__ . '/blocks/*', GLOB_ONLYDIR));
-
-
-  foreach ($blocks as $block) {
-    if (has_block('genesis-custom-blocks/' . $block, $post_id)) {
-
-      $handle = 'genesis-custom-blocks__block-' . $block;
-      $blocks_url = plugins_url() . '/ra7-helper-plugin/blocks/';
-
-      unregister_block_style('genesis-custom-blocks', 'block-' . $block);
-      wp_enqueue_style(
-        $handle,
-        $blocks_url . '/' . $block . '/block.css',
-        array(),
-        RAS_HP_VERSION
-      );
+    if (!is_singular()) {
+        return;
     }
-  }
+
+    $post_id = get_the_ID();
+    if (!$post_id) {
+        return;
+    }
+
+    $content = get_post_field('post_content', $post_id);
+    $blocks_on_page = parse_blocks($content);
+
+    if (empty($blocks_on_page)) {
+        return;
+    }
+
+    $ra7_blocks = [];
+    foreach ($blocks_on_page as $block) {
+        if (isset($block['blockName']) && strpos($block['blockName'], 'genesis-custom-blocks/') === 0) {
+            $ra7_blocks[] = str_replace('genesis-custom-blocks/', '', $block['blockName']);
+        }
+    }
+    $ra7_blocks = array_unique($ra7_blocks);
+
+    foreach ($ra7_blocks as $block_name) {
+        // Update CSS version - Genesis Custom Blocks uses this handle format with double underscores
+        $style_handle = 'genesis-custom-blocks__block-' . $block_name;
+        if (isset($wp_styles->registered[$style_handle])) {
+            $wp_styles->registered[$style_handle]->ver = RAS_HP_VERSION;
+        }
+
+        // Update JS version - The script handle is defined in the block's `block.php` file
+        $script_handle = $block_name . '-js';
+        if (isset($wp_scripts->registered[$script_handle])) {
+            $wp_scripts->registered[$script_handle]->ver = RAS_HP_VERSION;
+        }
+    }
 }
-add_action('enqueue_block_assets', 'ras_override_style_import');
+add_action('wp_print_footer_scripts', 'ras_override_block_scripts', 1);
 
 
 /** Shortcodes */
